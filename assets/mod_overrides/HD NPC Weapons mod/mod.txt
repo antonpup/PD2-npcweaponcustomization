@@ -1,0 +1,5 @@
+{
+  "Author": "I am not a spy...",
+  "Description": "This mod changes the NPC Weapon models to be HD. These weapons support first person weapon texture customization. This mod is also compatible with the HD Weapons - NPC Customization mod to customize the enemy weapons. Special thanks to: Danp1970, Mushy93, LASTBULLET_White3Designer, and Zdann.",
+  "Name": "HD NPC Weapons mod"
+}
