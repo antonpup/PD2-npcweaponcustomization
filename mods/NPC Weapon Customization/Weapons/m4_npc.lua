@@ -1,4 +1,3 @@
-log("m4_npc loaded")
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_M4_Localization", function(loc)
 	LocalizationManager:add_localized_strings({
 		["random"] = "Random",

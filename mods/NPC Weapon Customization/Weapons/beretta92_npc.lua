@@ -1,4 +1,3 @@
-log("beretta92_npc loaded")
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_beretta92_Localization", function(loc)
 	LocalizationManager:add_localized_strings({
 		["random"] = "Random",

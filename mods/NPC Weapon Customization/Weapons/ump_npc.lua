@@ -1,4 +1,3 @@
-log("ump_npc loaded")
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_ump_Localization", function(loc)
 	LocalizationManager:add_localized_strings({
 		["random"] = "Random",

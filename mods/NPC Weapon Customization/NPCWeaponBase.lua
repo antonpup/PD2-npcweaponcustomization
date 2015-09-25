@@ -66,7 +66,7 @@ function NPCRaycastWeaponBase:init(unit)
 		self._sound_fire:set_switch("suppressed", tweak_data.weapon[self._name_id].has_suppressor)
 	end
 	if self._name_id then
-		log(self._name_id)
+		--log(self._name_id)
 	end
 	NPCWeap:setup_weapon(self._unit, self._name_id)
 	if NPCWeap.weapons[self._name_id] then
@@ -104,7 +104,7 @@ function NPCRaycastWeaponBase:set_laser_enabled(state, npc_weapon_customize)
 			self._laser_unit:get_object(Idstring("g_peqbox")):set_visibility(false)
 			self._laser_unit:get_object(Idstring("g_laser")):set_visibility(false)
 			self._laser_unit:get_object(Idstring("g_indicator")):set_visibility(false)
-			log("set_objects_invis")
+			--log("set_objects_invis")
 		end
 	elseif alive(self._laser_unit) then
 		self._laser_unit:set_slot(0)
@@ -116,7 +116,7 @@ function NPCRaycastWeaponBase:set_flashlight_enabled(enabled)
 	if not self._flashlight_data then
 		return
 	end
-	log("set_flashlight_enabled")
+	--log("set_flashlight_enabled")
 	self._flashlight_data.enabled = enabled
 	if managers.game_play_central:flashlights_on() and enabled then
 		self._flashlight_data.light:set_enable(self._flashlight_light_lod_enabled)

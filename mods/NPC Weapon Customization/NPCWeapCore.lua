@@ -1,5 +1,7 @@
 if not _G.NPCWeap then
 	_G.NPCWeap = {}
+    NPCWeap.debug_enabled = true
+    NPCWeap.debug_systemprint = true
 	NPCWeap.loaded_options = NPCWeap.loaded_options or {}
 	NPCWeap.mod_path = ModPath
 	NPCWeap.save_path = SavePath
@@ -18,7 +20,20 @@ NPCWeap.hook_files = {
 	["lib/units/weapons/npcraycastweaponbase"] = "NPCWeaponBase.lua"
 }
 
+function NPCWeap:PrintDebug(elapsedtime, message)
+    if NPCWeap.debug_enabled and elapsedtime > 0.01 then
+        
+        if NPCWeap.debug_systemprint and managers and managers.chat then
+            managers.chat:_receive_message(ChatManager.GAME, "NPCWeapons", message .. " took " .. string.format("%.2f", elapsedtime) .. " seconds.", tweak_data.system_chat_color)
+        else
+            log(message .. " took " .. string.format("%.2f", elapsedtime) .. " seconds.")
+        end
+    end
+end
+
 if not NPCWeap.setup then
+    local debug_clockstart = os.clock() --DEBUG
+    
 	local files = file.GetFiles(NPCWeap.mod_path .. "Weapons/" )
 	for p, d in pairs(files) do
 		local file_path = NPCWeap.mod_path .. "Weapons/" .. d
@@ -32,6 +47,8 @@ if not NPCWeap.setup then
 	end
 	NPCWeap:Load_options()
 	NPCWeap.setup = true
+    
+    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap.setup") --DEBUG
 end
 
 if RequiredScript then
@@ -42,6 +59,7 @@ if RequiredScript then
 end
 
 function NPCWeap:AddMultipleChoice(multi_data)
+    local debug_clockstart = os.clock() --DEBUG
 
 	local data = {
 		type = "MenuItemMultiChoiceWithIcon"
@@ -67,10 +85,13 @@ function NPCWeap:AddMultipleChoice(multi_data)
 	local item = menu:create_item(data, params)
 	item:set_value( multi_data.value or 1 )
 	menu:add_item( item )
-
+    
+    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:AddMultipleChoice") --DEBUG
 end
 
 function NPCWeap:setup_weapon(unit, name)
+    local debug_clockstart = os.clock() --DEBUG
+
 	local current_weap = NPCWeap.weapons[name]
 	
 	if current_weap then
@@ -154,7 +175,6 @@ function NPCWeap:setup_weapon(unit, name)
 			if current_weap.required[object_name] then
 				local required_table = current_weap.required[object_name]
 				for _, requiredItems in pairs(required_table) do
-					--log(category)
 					local object = unit:get_object(Idstring(requiredItems))
 					
 					if object then
@@ -243,6 +263,8 @@ function NPCWeap:setup_weapon(unit, name)
 		end
 		
 	end
+    
+    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:setup_weapon") --DEBUG
 end
 
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_Localization", function(loc)
@@ -272,6 +294,8 @@ Hooks:Add("MenuManagerSetupCustomMenus", "Base_SetupNPCWeapMenu", function( menu
 end)
 math.randomseed(os.time())
 function NPCWeap:get_random(current_weap, category, weap_name, unit)
+    local debug_clockstart = os.clock() --DEBUG
+
 	local value = math.random(#current_weap[category] - 1)
 	local random_object = current_weap[category][value]
 	
@@ -295,10 +319,13 @@ function NPCWeap:get_random(current_weap, category, weap_name, unit)
 			end
 		end
 	end
+    
+    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:get_random") --DEBUG
 	return random_object
 end
 
 function NPCWeap:AddToggle( toggle_data, node)
+    local debug_clockstart = os.clock() --DEBUG
 
 	local data = {
 		type = "CoreMenuItemToggle.ItemToggle",
@@ -347,10 +374,14 @@ function NPCWeap:AddToggle( toggle_data, node)
 	if toggle_data.disabled then
 		item:set_enabled( not toggle_data.disabled )
 	end
+    
+    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:AddToggle") --DEBUG
 	return node:add_item(item)
 end
 
 function NPCWeap:update_compatibility_item(node_items, this)
+    local debug_clockstart = os.clock() --DEBUG
+
 	for nodeKey, nodeItem in pairs( node_items ) do
 		if nodeItem.item.set_enabled then
 
@@ -363,15 +394,23 @@ function NPCWeap:update_compatibility_item(node_items, this)
 			this:refresh_node()
 		end
 	end
+    
+    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:update_compatibility_item") --DEBUG
 end
 
 function NPCWeap:update_compatibility(item, this, current_weap, current_value)
+    local debug_clockstart = os.clock() --DEBUG
+
 	local node_items = item._parameters.gui_node.row_items
 	NPCWeap:update_compatibility_item(node_items, this)
+    
+    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:update_compatibility") --DEBUG
 end
 
 Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function( menu_manager, nodes )
 	MenuCallbackHandler.refresh_weapon = function(this, item)
+        local debug_clockstart = os.clock() --DEBUG
+        
 		local unit = managers.menu_scene._item_unit.unit
 		local current_weap = NPCWeap.weapons[NPCWeap.current_weapon]
 		local current_value = current_weap[item:name()][item:value()]
@@ -493,6 +532,8 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 			end
 		end
 		NPCWeap:update_category(unit, current_weap, current_value, item:name())
+        
+        NPCWeap:PrintDebug(os.clock() - debug_clockstart, "MenuCallbackHandler.refresh_weapon") --DEBUG
 	end
 	
 	MenuCallbackHandler.reset_buttons = function(this, item)
@@ -599,118 +640,116 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 end)
 
 function NPCWeap:update_category(unit, current_weap, current_value, category)
+    local debug_clockstart = os.clock() --DEBUG
+
 	local object_name
-		if current_value ~= "random" then
-			object_name = string.sub(current_value, current_weap.object_sub, string.len(current_value))
-		else
-			local random_object = NPCWeap:get_random(current_weap, category, NPCWeap.current_weapon, unit)
-			object_name = string.sub(random_object, current_weap.object_sub, string.len(random_object))
-		end
-		if object_name ~= "none" then
-			local object = unit:get_object(Idstring(object_name))
-			if object then
-				object:set_visibility(true)
-			end
-		end
-		if current_weap[object_name] then
-			for p, k in pairs(current_weap[object_name]) do
-				log(p)
-				if current_weap[p] then
-					for x, y in pairs(current_weap[p]) do
-						local object_string = string.sub(y, current_weap.object_sub, string.len(y))
-						local object = unit:get_object(Idstring(object_string))
-						if object and object:visibility() == true then
-							object:set_local_position(k)
-							if current_weap.required[object_string] then
-								local required_table = current_weap.required[object_string]
-								for p, d in pairs(required_table) do
-									local object_req = unit:get_object(Idstring(d))
-									if object_req then
-										object_req:set_local_position(k)
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-		if current_weap.pos_check and current_weap.pos_check[category] then
-			for _, pos_category in pairs(current_weap.pos_check[category]) do
-				for _, object_wpre in pairs(current_weap[pos_category]) do
-					local object_string = string.sub(object_wpre, current_weap.object_sub, string.len(object_wpre))
-					local wpre_object = unit:get_object(Idstring(object_string))
-					if wpre_object and wpre_object:visibility() == true then
-						if current_weap[object_string] then
-							for vcategory, vector in pairs(current_weap[object_string]) do
-								if vcategory == category then
-									local object = unit:get_object(Idstring(object_name))
-									if object and object:visibility() == true then
-										object:set_local_position(vector)
-										--if pos_category == "barrel" then
-										--log("fire pos: " .. unit:get_object(Idstring("fire")).position)
-											
-										--log("fire after pos: " .. unit:get_object(Idstring("fire")).position)
-										--end
-										if current_weap.required[object_name] then
-											local required_table = current_weap.required[object_name]
-											for p, d in pairs(required_table) do
-												local object_req = unit:get_object(Idstring(d))
-												if object_req then
-													object_req:set_local_position(vector)
-												end
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-		
-		for p, d in pairs(current_weap.required_reset[category]) do
-			local object = unit:get_object(Idstring(d))
-			if object then
-				object:set_visibility(false)
-			end
-		end
-		
-		if current_weap.absolute_reset_on_update then
-			for aroupdKey, aroupdVal in pairs(current_weap.absolute_reset_on_update) do
-				for _, aroupdItem in pairs(aroupdVal) do
-					local object = unit:get_object(Idstring(aroupdItem))
-					if object and object:visibility() == true then
-						object:set_visibility(false)
-						NPCWeap:update_category(unit, current_weap, "random", aroupdKey)
-					end
-				end
-			end
-		end
-		
-		if current_weap.required[object_name] then
-			local required_table = current_weap.required[object_name]
-			for p, d in pairs(required_table) do
-				local object = unit:get_object(Idstring(d))
-				if object then
-					object:set_visibility(true)
-				end
-			end
-		end
-		for p, d in pairs(current_weap.required) do
-			for i, j in pairs(d) do
-				local req_object = unit:get_object(Idstring(p))
-				if req_object and req_object:visibility() == true then
-					local object = unit:get_object(Idstring(j))
-					if object then
-						object:set_visibility(true)
-					end
-				end
-			end
-		end
-	end
-	
+    if current_value ~= "random" then
+        object_name = string.sub(current_value, current_weap.object_sub, string.len(current_value))
+    else
+        local random_object = NPCWeap:get_random(current_weap, category, NPCWeap.current_weapon, unit)
+        object_name = string.sub(random_object, current_weap.object_sub, string.len(random_object))
+    end
+    if object_name ~= "none" then
+        local object = unit:get_object(Idstring(object_name))
+        if object then
+            object:set_visibility(true)
+        end
+    end
+    if current_weap[object_name] then
+        for p, k in pairs(current_weap[object_name]) do
+            if current_weap[p] then
+                for x, y in pairs(current_weap[p]) do
+                    local object_string = string.sub(y, current_weap.object_sub, string.len(y))
+                    local object = unit:get_object(Idstring(object_string))
+                    if object and object:visibility() == true then
+                        object:set_local_position(k)
+                        if current_weap.required[object_string] then
+                            local required_table = current_weap.required[object_string]
+                            for p, d in pairs(required_table) do
+                                local object_req = unit:get_object(Idstring(d))
+                                if object_req then
+                                    object_req:set_local_position(k)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    if current_weap.pos_check and current_weap.pos_check[category] then
+        for _, pos_category in pairs(current_weap.pos_check[category]) do
+            for _, object_wpre in pairs(current_weap[pos_category]) do
+                local object_string = string.sub(object_wpre, current_weap.object_sub, string.len(object_wpre))
+                local wpre_object = unit:get_object(Idstring(object_string))
+                if wpre_object and wpre_object:visibility() == true then
+                    if current_weap[object_string] then
+                        for vcategory, vector in pairs(current_weap[object_string]) do
+                            if vcategory == category then
+                                local object = unit:get_object(Idstring(object_name))
+                                if object and object:visibility() == true then
+                                    object:set_local_position(vector)
+                                    if current_weap.required[object_name] then
+                                        local required_table = current_weap.required[object_name]
+                                        for p, d in pairs(required_table) do
+                                            local object_req = unit:get_object(Idstring(d))
+                                            if object_req then
+                                                object_req:set_local_position(vector)
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+    for p, d in pairs(current_weap.required_reset[category]) do
+        local object = unit:get_object(Idstring(d))
+        if object then
+            object:set_visibility(false)
+        end
+    end
+    
+    if current_weap.absolute_reset_on_update then
+        for aroupdKey, aroupdVal in pairs(current_weap.absolute_reset_on_update) do
+            for _, aroupdItem in pairs(aroupdVal) do
+                local object = unit:get_object(Idstring(aroupdItem))
+                if object and object:visibility() == true then
+                    object:set_visibility(false)
+                    NPCWeap:update_category(unit, current_weap, "random", aroupdKey)
+                end
+            end
+        end
+    end
+    
+    if current_weap.required[object_name] then
+        local required_table = current_weap.required[object_name]
+        for p, d in pairs(required_table) do
+            local object = unit:get_object(Idstring(d))
+            if object then
+                object:set_visibility(true)
+            end
+        end
+    end
+    for p, d in pairs(current_weap.required) do
+        for i, j in pairs(d) do
+            local req_object = unit:get_object(Idstring(p))
+            if req_object and req_object:visibility() == true then
+                local object = unit:get_object(Idstring(j))
+                if object then
+                    object:set_visibility(true)
+                end
+            end
+        end
+    end
+    
+    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:update_category") --DEBUG
+end
+    
 Hooks:Add("MenuManagerBuildCustomMenus", "Base_BuildNPCWeapMenu", function( menu_manager, nodes )
 	if nodes.main then
 		nodes[NPCWeap.menu_name] = MenuHelper:BuildMenu( NPCWeap.menu_name )

@@ -1,4 +1,3 @@
-log("saiga_npc loaded")
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_saiga_Localization", function(loc)
 	LocalizationManager:add_localized_strings({
 		["random"] = "Random",

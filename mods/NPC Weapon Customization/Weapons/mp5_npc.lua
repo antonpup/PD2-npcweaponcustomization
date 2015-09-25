@@ -1,4 +1,3 @@
-log("mp5_npc loaded")
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_mp5_Localization", function(loc)
 	LocalizationManager:add_localized_strings({
 		["random"] = "Random",
