@@ -20,14 +20,20 @@ NPCWeap.hook_files = {
 	["lib/units/weapons/npcraycastweaponbase"] = "NPCWeaponBase.lua"
 }
 
-function NPCWeap:PrintDebug(elapsedtime, message)
-    if NPCWeap.debug_enabled and elapsedtime > 0.01 then
+function NPCWeap:PrintDebug(message)
+    if NPCWeap.debug_enabled then
         
         if NPCWeap.debug_systemprint and managers and managers.chat then
-            managers.chat:_receive_message(ChatManager.GAME, "NPCWeapons", message .. " took " .. string.format("%.2f", elapsedtime) .. " seconds.", tweak_data.system_chat_color)
+            managers.chat:_receive_message(ChatManager.GAME, "NPCWeapons", message, tweak_data.system_chat_color)
         else
-            log(message .. " took " .. string.format("%.2f", elapsedtime) .. " seconds.")
+            log(message)
         end
+    end
+end
+
+function NPCWeap:PrintDebugElapsed(elapsedtime, message)
+    if elapsedtime > 0.01 then
+        NPCWeap:PrintDebug(message .. " took " .. string.format("%.2f", elapsedtime) .. " seconds.")
     end
 end
 
@@ -48,7 +54,7 @@ if not NPCWeap.setup then
 	NPCWeap:Load_options()
 	NPCWeap.setup = true
     
-    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap.setup") --DEBUG
+    NPCWeap:PrintDebugElapsed(os.clock() - debug_clockstart, "NPCWeap.setup") --DEBUG
 end
 
 if RequiredScript then
@@ -86,7 +92,7 @@ function NPCWeap:AddMultipleChoice(multi_data)
 	item:set_value( multi_data.value or 1 )
 	menu:add_item( item )
     
-    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:AddMultipleChoice") --DEBUG
+    NPCWeap:PrintDebugElapsed(os.clock() - debug_clockstart, "NPCWeap:AddMultipleChoice") --DEBUG
 end
 
 function NPCWeap:setup_weapon(unit, name)
@@ -264,7 +270,7 @@ function NPCWeap:setup_weapon(unit, name)
 		
 	end
     
-    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:setup_weapon") --DEBUG
+    NPCWeap:PrintDebugElapsed(os.clock() - debug_clockstart, "NPCWeap:setup_weapon") --DEBUG
 end
 
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_Localization", function(loc)
@@ -320,7 +326,7 @@ function NPCWeap:get_random(current_weap, category, weap_name, unit)
 		end
 	end
     
-    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:get_random") --DEBUG
+    NPCWeap:PrintDebugElapsed(os.clock() - debug_clockstart, "NPCWeap:get_random") --DEBUG
 	return random_object
 end
 
@@ -375,7 +381,7 @@ function NPCWeap:AddToggle( toggle_data, node)
 		item:set_enabled( not toggle_data.disabled )
 	end
     
-    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:AddToggle") --DEBUG
+    NPCWeap:PrintDebugElapsed(os.clock() - debug_clockstart, "NPCWeap:AddToggle") --DEBUG
 	return node:add_item(item)
 end
 
@@ -395,7 +401,7 @@ function NPCWeap:update_compatibility_item(node_items, this)
 		end
 	end
     
-    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:update_compatibility_item") --DEBUG
+    NPCWeap:PrintDebugElapsed(os.clock() - debug_clockstart, "NPCWeap:update_compatibility_item") --DEBUG
 end
 
 function NPCWeap:update_compatibility(item, this, current_weap, current_value)
@@ -404,7 +410,7 @@ function NPCWeap:update_compatibility(item, this, current_weap, current_value)
 	local node_items = item._parameters.gui_node.row_items
 	NPCWeap:update_compatibility_item(node_items, this)
     
-    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:update_compatibility") --DEBUG
+    NPCWeap:PrintDebugElapsed(os.clock() - debug_clockstart, "NPCWeap:update_compatibility") --DEBUG
 end
 
 Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function( menu_manager, nodes )
@@ -533,7 +539,7 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 		end
 		NPCWeap:update_category(unit, current_weap, current_value, item:name())
         
-        NPCWeap:PrintDebug(os.clock() - debug_clockstart, "MenuCallbackHandler.refresh_weapon") --DEBUG
+        NPCWeap:PrintDebugElapsed(os.clock() - debug_clockstart, "MenuCallbackHandler.refresh_weapon") --DEBUG
 	end
 	
 	MenuCallbackHandler.reset_buttons = function(this, item)
@@ -747,7 +753,7 @@ function NPCWeap:update_category(unit, current_weap, current_value, category)
         end
     end
     
-    NPCWeap:PrintDebug(os.clock() - debug_clockstart, "NPCWeap:update_category") --DEBUG
+    NPCWeap:PrintDebugElapsed(os.clock() - debug_clockstart, "NPCWeap:update_category") --DEBUG
 end
     
 Hooks:Add("MenuManagerBuildCustomMenus", "Base_BuildNPCWeapMenu", function( menu_manager, nodes )
