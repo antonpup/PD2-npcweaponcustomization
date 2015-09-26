@@ -6,6 +6,7 @@ if not _G.NPCWeap then
 	NPCWeap.mod_path = ModPath
 	NPCWeap.save_path = SavePath
 	NPCWeap.menu_name = "NPCWeap_menu"
+	NPCWeap.OptionMenuName = "NPCWeapOptionsMenu"
 	NPCWeap.write_options = NPCWeap.write_options or {}
 	NPCWeap.loaded_options = NPCWeap.loaded_options or {}
 	NPCWeap.weapons = NPCWeap.weapons or {}
@@ -277,6 +278,12 @@ Hooks:Add("LocalizationManagerPostInit", "NPCWeap_Localization", function(loc)
 	LocalizationManager:add_localized_strings({
 		["NPCWeap_button"] = "NPC Weapon Customization",
 		["NPCWeap_button_help"] = "Customize NPC weapons",
+        ["NPCWeapOptions_button"] = "NPC Weapon Options",
+		["NPCWeapOptions_button_help"] = "Customize the options for NPC weapons",
+        
+		["npcweap_global_sync"] = "Use Host customization (When possible)",
+		["npcweap_global_sync_help"] = "",
+        
 		["barrel_title"] = "Barrel",
 		["body_title"] = "Body",
 		["barrel_ext_title"] = "Barrel Extension",
@@ -297,6 +304,7 @@ end)
 
 Hooks:Add("MenuManagerSetupCustomMenus", "Base_SetupNPCWeapMenu", function( menu_manager, nodes )
     MenuHelper:NewMenu( NPCWeap.menu_name )
+    MenuHelper:NewMenu( NPCWeap.OptionMenuName )
 end)
 math.randomseed(os.time())
 function NPCWeap:get_random(current_weap, category, weap_name, unit)
@@ -640,9 +648,25 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 			callback = "setup_buttons",
 			menu_id = NPCWeap.menu_name
 		})
-	
 	end
 	
+   MenuCallbackHandler.NPCWeapGlobalSyncClbk = function(this, item)
+		NPCWeap.loaded_options.GlobalSync = item:value() == "on" and true or false
+		NPCWeap:Save()
+	end
+		
+	MenuHelper:AddToggle({
+		id = "NPCWeapGlobalSync",
+		title = "npcweap_global_sync",
+		desc = "npcweap_global_sync_help",
+		callback = "NPCWeapGlobalSyncClbk",
+		--disabled_color = ,
+		icon_by_text = false,
+		menu_id = NPCWeap.OptionMenuName,
+		value = NPCWeap.loaded_options.GlobalSync
+		--priority = 1001
+	})
+    
 end)
 
 function NPCWeap:update_category(unit, current_weap, current_value, category)
@@ -762,4 +786,7 @@ Hooks:Add("MenuManagerBuildCustomMenus", "Base_BuildNPCWeapMenu", function( menu
 		MenuHelper:AddMenuItem( MenuHelper.menus.lua_mod_options_menu, NPCWeap.menu_name, "NPCWeap_button", "NPCWeap_button_help", 1 )
 		nodes[NPCWeap.menu_name]._parameters.scene_state = "standard"
 	end
+    nodes[NPCWeap.OptionMenuName] = MenuHelper:BuildMenu( NPCWeap.OptionMenuName )
+    MenuHelper:AddMenuItem( MenuHelper.menus.lua_mod_options_menu, NPCWeap.OptionMenuName, "NPCWeapOptions_button", "NPCWeapOptions_button_help", 1 )
+	nodes[NPCWeap.OptionMenuName]._parameters.scene_state = "standard"
 end)
