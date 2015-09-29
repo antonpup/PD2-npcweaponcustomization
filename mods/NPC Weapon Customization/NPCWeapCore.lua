@@ -21,6 +21,21 @@ NPCWeap.hook_files = {
 	["lib/units/weapons/npcraycastweaponbase"] = "NPCWeaponBase.lua"
 }
 
+NPCWeap.PrevTypes = {
+    [1] = {name = "npcweap_weapon"},
+    [2] = {name = "npcweap_dozer", unit = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1_husk"}
+}
+
+function NPCWeap:GetSubtypes(data, var)
+    local new_table = {}
+    for i, subtable in pairs(data) do
+        if subtable[var] then
+            table.insert(new_table, subtable[var])
+        end
+    end
+    return new_table
+end
+
 function NPCWeap:PrintDebug(message)
     if NPCWeap.debug_enabled then
         
@@ -63,6 +78,26 @@ if RequiredScript then
 	if NPCWeap.hook_files[requiredScript] then
 		dofile( ModPath .. NPCWeap.hook_files[requiredScript] )
 	end
+end
+
+function NPCWeap:SetupPreview(id)
+    local prevdata = self.PrevTypes[id]
+    
+    if prevdata.unit then
+        managers.menu_scene:_spawn_item( prevdata.unit, nil)
+        self.preview_style = 2
+        local unit = managers.menu_scene._item_unit.unit
+        
+        unit:anim_state_machine():play_raw(Idstring("idle"))
+        --local weap_unit = World:spawn_unit(Idstring(NPCWeap.weapons[NPCWeap.current_weapon].unit), Vector3(), Rotation())
+        --NPCWeap:setup_weapon(unit:inventory():get_weapon(), NPCWeap.current_weapon)
+    else
+        managers.menu_scene:_spawn_item( NPCWeap.weapons[NPCWeap.current_weapon].unit, nil)
+        self.preview_style = 1
+        NPCWeap:setup_weapon(managers.menu_scene._item_unit.unit, NPCWeap.current_weapon)
+    end
+    
+    -- Need to manipulate anims button
 end
 
 function NPCWeap:AddMultipleChoice(multi_data)
@@ -650,7 +685,7 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 		})
 	end
 	
-   MenuCallbackHandler.NPCWeapGlobalSyncClbk = function(this, item)
+    MenuCallbackHandler.NPCWeapGlobalSyncClbk = function(this, item)
 		NPCWeap.loaded_options.GlobalSync = item:value() == "on" and true or false
 		NPCWeap:Save()
 	end
@@ -667,6 +702,22 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 		--priority = 1001
 	})
     
+    if nodes.main then
+        MenuCallbackHandler.NPCWeapPrevTypeChanged = function(this, item)
+            NPCWeap:SetupPreview(item:value())
+        end
+        
+        NPCWeap:AddMultipleChoice({
+            id = "NPCWeapPrev",
+            title = "npcweap_prev_title",
+            help = "npcweap_prev_help",
+            callback = "NPCWeapPrevTypeChanged",
+            node = nodes.blackmarket_preview_node,
+            value = 1,
+            items = NPCWeap:GetSubtypes(NPCWeap.PrevTypes, "name"),
+            disabled = false,
+        })
+    end
 end)
 
 function NPCWeap:update_category(unit, current_weap, current_value, category)
