@@ -11,6 +11,8 @@ if not _G.NPCWeap then
 	NPCWeap.loaded_options = NPCWeap.loaded_options or {}
 	NPCWeap.weapons = NPCWeap.weapons or {}
 	NPCWeap.incompat_categories_button = {}
+    NPCWeap.currentUnit = nil
+    
 end
 
 NPCWeap.dofiles = {
@@ -23,12 +25,84 @@ NPCWeap.hook_files = {
 
 NPCWeap.PrevTypes = {
     [1] = {name = "npcweap_weapon"},
-    [2] = {name = "npcweap_dozer", unit = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1_husk"}
+    [2] = {name = "npcweap_ene_bulldozer_1_husk", unit = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1_husk"},
+    
+    [3] = {name = "npcweap_ene_cop_1_husk", unit = "units/payday2/characters/ene_cop_1/ene_cop_1_husk"},
+    [4] = {name = "npcweap_ene_cop_2_husk", unit = "units/payday2/characters/ene_cop_2/ene_cop_2_husk"},
+    [5] = {name = "npcweap_ene_cop_3_husk", unit = "units/payday2/characters/ene_cop_3/ene_cop_3_husk"},
+    [6] = {name = "npcweap_ene_cop_4_husk", unit = "units/payday2/characters/ene_cop_4/ene_cop_4_husk"},
+    [7] = {name = "npcweap_ene_security_1_husk", unit = "units/payday2/characters/ene_security_1/ene_security_1_husk"},
+    [8] = {name = "npcweap_ene_security_2_husk", unit = "units/payday2/characters/ene_security_2/ene_security_2_husk"},
+    [9] = {name = "npcweap_ene_security_3_husk", unit = "units/payday2/characters/ene_security_3/ene_security_3_husk"},
+    [10] = {name = "npcweap_ene_security_4_husk", unit = "units/payday2/characters/ene_security_4/ene_security_4_husk"},
+    [11] = {name = "npcweap_ene_security_5_husk", unit = "units/payday2/characters/ene_security_5/ene_security_5_husk"},
+    [12] = {name = "npcweap_ene_security_6_husk", unit = "units/payday2/characters/ene_security_6/ene_security_6_husk"},
+    [13] = {name = "npcweap_ene_security_7_husk", unit = "units/payday2/characters/ene_security_7/ene_security_7_husk"},
+    [14] = {name = "npcweap_ene_city_swat_1_husk", unit = "units/payday2/characters/ene_city_swat_1/ene_city_swat_1_husk"},
+    [15] = {name = "npcweap_ene_city_swat_2_husk", unit = "units/payday2/characters/ene_city_swat_2/ene_city_swat_2_husk"},
+    [16] = {name = "npcweap_ene_city_swat_3_husk", unit = "units/payday2/characters/ene_city_swat_3/ene_city_swat_3_husk"},
+    [17] = {name = "npcweap_ene_fbi_1_husk", unit = "units/payday2/characters/ene_fbi_1/ene_fbi_1_husk"},
+    [18] = {name = "npcweap_ene_fbi_2_husk", unit = "units/payday2/characters/ene_fbi_2/ene_fbi_2_husk"},
+    [19] = {name = "npcweap_ene_fbi_3_husk", unit = "units/payday2/characters/ene_fbi_3/ene_fbi_3_husk"},
+    [20] = {name = "npcweap_ene_fbi_boss_1_husk", unit = "units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1_husk"},
+    [21] = {name = "npcweap_ene_fbi_female_1_husk", unit = "units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1_husk"},
+    [22] = {name = "npcweap_ene_fbi_female_2_husk", unit = "units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2_husk"},
+    [23] = {name = "npcweap_ene_fbi_female_3_husk", unit = "units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3_husk"},
+    [24] = {name = "npcweap_ene_fbi_female_4_husk", unit = "units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4_husk"},
+    [25] = {name = "npcweap_ene_fbi_heavy_1_husk", unit = "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1_husk"},
+    [26] = {name = "npcweap_ene_fbi_office_1_husk", unit = "units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1_husk"},
+    [27] = {name = "npcweap_ene_fbi_office_2_husk", unit = "units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2_husk"},
+    [28] = {name = "npcweap_ene_fbi_office_3_husk", unit = "units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3_husk"},
+    [29] = {name = "npcweap_ene_fbi_office_4_husk", unit = "units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4_husk"},
+    [30] = {name = "npcweap_ene_fbi_swat_1_husk", unit = "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1_husk"},
+    [31] = {name = "npcweap_ene_fbi_swat_2_husk", unit = "units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2_husk"},
+    [32] = {name = "npcweap_ene_murkywater_1_husk", unit = "units/payday2/characters/ene_murkywater_1/ene_murkywater_1_husk"},
+    [33] = {name = "npcweap_ene_murkywater_2_husk", unit = "units/payday2/characters/ene_murkywater_2/ene_murkywater_2_husk"},
+    [34] = {name = "npcweap_ene_prisonguard_female_1_husk", unit = "units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1_husk"},
+    [35] = {name = "npcweap_ene_prisonguard_male_1_husk", unit = "units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1_husk"},
+    [36] = {name = "npcweap_ene_secret_service_1_husk", unit = "units/payday2/characters/ene_secret_service_1/ene_secret_service_1_husk"},
+    [37] = {name = "npcweap_ene_secret_service_2_husk", unit = "units/payday2/characters/ene_secret_service_2/ene_secret_service_2_husk"},
+    [38] = {name = "npcweap_ene_shield_1_husk", unit = "units/payday2/characters/ene_shield_1/ene_shield_1_husk"},
+    [39] = {name = "npcweap_ene_shield_2_husk", unit = "units/payday2/characters/ene_shield_2/ene_shield_2_husk"},
+    [40] = {name = "npcweap_ene_sniper_1_husk", unit = "units/payday2/characters/ene_sniper_1/ene_sniper_1_husk"},
+    [41] = {name = "npcweap_ene_sniper_2_husk", unit = "units/payday2/characters/ene_sniper_2/ene_sniper_2_husk"},
+    [42] = {name = "npcweap_ene_spook_1_husk", unit = "units/payday2/characters/ene_spook_1/ene_spook_1_husk"},
+    [43] = {name = "npcweap_ene_swat_1_husk", unit = "units/payday2/characters/ene_swat_1/ene_swat_1_husk"},
+    [44] = {name = "npcweap_ene_swat_2_husk", unit = "units/payday2/characters/ene_swat_2/ene_swat_2_husk"},
+    [45] = {name = "npcweap_ene_swat_heavy_1_husk", unit = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1_husk"},
+    [46] = {name = "npcweap_ene_tazer_1_husk", unit = "units/payday2/characters/ene_tazer_1/ene_tazer_1_husk"},
+    [47] = {name = "npcweap_ene_bulldozer_2_husk", unit = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2_husk"},
+    [48] = {name = "npcweap_ene_bulldozer_3_husk", unit = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3_husk"},
+    --[49] = {name = "npcweap_ene_bulldozer_4_husk", unit = "units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4_husk"},
+    [50] = {name = "npcweap_ene_gang_mobster_boss_husk", unit = "units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss_husk"},
+    [51] = {name = "npcweap_ene_gang_russian_2_husk", unit = "units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2_husk"},
+    [52] = {name = "npcweap_ene_gang_russian_4_husk", unit = "units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4_husk"},
+    [53] = {name = "npcweap_ene_gang_russian_5_husk", unit = "units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5_husk"},
+    [54] = {name = "npcweap_ene_biker_1_husk", unit = "units/payday2/characters/ene_biker_1/ene_biker_1_husk"},
+    [55] = {name = "npcweap_ene_biker_2_husk", unit = "units/payday2/characters/ene_biker_2/ene_biker_2_husk"},
+    [56] = {name = "npcweap_ene_biker_3_husk", unit = "units/payday2/characters/ene_biker_3/ene_biker_3_husk"},
+    [57] = {name = "npcweap_ene_biker_4_husk", unit = "units/payday2/characters/ene_biker_4/ene_biker_4_husk"},
+    [58] = {name = "npcweap_ene_gang_black_1_husk", unit = "units/payday2/characters/ene_gang_black_1/ene_gang_black_1_husk"},
+    [59] = {name = "npcweap_ene_gang_black_2_husk", unit = "units/payday2/characters/ene_gang_black_2/ene_gang_black_2_husk"},
+    [60] = {name = "npcweap_ene_gang_black_3_husk", unit = "units/payday2/characters/ene_gang_black_3/ene_gang_black_3_husk"},
+    [61] = {name = "npcweap_ene_gang_black_4_husk", unit = "units/payday2/characters/ene_gang_black_4/ene_gang_black_4_husk"},
+    [62] = {name = "npcweap_ene_gang_mexican_1_husk", unit = "units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1_husk"},
+    [63] = {name = "npcweap_ene_gang_mexican_2_husk", unit = "units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2_husk"},
+    [64] = {name = "npcweap_ene_gang_mexican_3_husk", unit = "units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3_husk"},
+    [65] = {name = "npcweap_ene_gang_mexican_4_husk", unit = "units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4_husk"},
+    [66] = {name = "npcweap_ene_gang_mobster_1_husk", unit = "units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1_husk"},
+    [67] = {name = "npcweap_ene_gang_mobster_2_husk", unit = "units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2_husk"},
+    [68] = {name = "npcweap_ene_gang_mobster_3_husk", unit = "units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3_husk"},
+    [69] = {name = "npcweap_ene_gang_mobster_4_husk", unit = "units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4_husk"}
+
+
 }
 
 function NPCWeap:GetSubtypes(data, var)
+    --Lua doesn't guarantee table order
     local new_table = {}
     for i, subtable in pairs(data) do
+        log(i)
         if subtable[var] then
             table.insert(new_table, subtable[var])
         end
@@ -81,18 +155,77 @@ if RequiredScript then
 end
 
 function NPCWeap:SetupPreview(id)
+    
+    --Destroy weapon unit
+    if NPCWeap.currentUnit and managers.menu_scene._item_unit.unit:get_object(Idstring("a_weapon_right_front")) then
+        World:delete_unit(NPCWeap.currentUnit)
+        NPCWeap.currentUnit = nil
+    end
+    
     local prevdata = self.PrevTypes[id]
     
-    if prevdata.unit then
+    if not PackageManager:loaded("packages/base") then
+        PackageManager:load("packages/base")
+    end
+    if not PackageManager:loaded("packages/narr_big") then
+        PackageManager:load("packages/narr_big")
+    end
+     if not PackageManager:loaded("packages/vlad_nightclub") then
+        PackageManager:load("packages/vlad_nightclub")
+    end
+    if not PackageManager:loaded("packages/narr_mia_2") then
+        PackageManager:load("packages/narr_mia_2")
+    end
+    if not PackageManager:loaded("packages/narr_jungle1") then
+        PackageManager:load("packages/narr_jungle1")
+    end
+    if not PackageManager:loaded("packages/narr_firestarter1") then
+        PackageManager:load("packages/narr_firestarter1")
+    end
+    if not PackageManager:loaded("packages/kosugi") then
+        PackageManager:load("packages/kosugi")
+    end
+    if not PackageManager:loaded("packages/vlad_shout") then
+        PackageManager:load("packages/vlad_shout")
+    end
+    if not PackageManager:loaded("packages/narr_hox_1") then
+        PackageManager:load("packages/narr_hox_1")
+    end
+     if not PackageManager:loaded("packages/narr_hox_2") then
+        PackageManager:load("packages/narr_hox_2")
+    end
+    if not PackageManager:loaded("packages/narr_hox_3") then
+        PackageManager:load("packages/narr_hox_3")
+    end
+    if not PackageManager:loaded("packages/narr_election3") then
+        PackageManager:load("packages/narr_election3")
+    end
+    
+    
+    if prevdata and prevdata.unit then
+        log(prevdata.unit)
+
         managers.menu_scene:_spawn_item( prevdata.unit, nil)
         self.preview_style = 2
+        managers.menu_scene._item_yaw = 180
         local unit = managers.menu_scene._item_unit.unit
         
-        unit:anim_state_machine():play_raw(Idstring("idle"))
-        --local weap_unit = World:spawn_unit(Idstring(NPCWeap.weapons[NPCWeap.current_weapon].unit), Vector3(), Rotation())
-        --NPCWeap:setup_weapon(unit:inventory():get_weapon(), NPCWeap.current_weapon)
+        if unit:get_object(Idstring("a_weapon_right_front")) then
+            
+            local spawn_rot = unit:get_object(Idstring("a_weapon_right_front")):rotation()
+            local spawn_pos = unit:get_object(Idstring("a_weapon_right_front")):position()
+            
+            local weap_unit = World:spawn_unit(Idstring(NPCWeap.weapons[NPCWeap.current_weapon].unit), spawn_pos, spawn_rot)
+            NPCWeap:setup_weapon(weap_unit, NPCWeap.current_weapon)
+            NPCWeap.currentUnit = weap_unit
+            
+            unit:link(Idstring("a_weapon_right_front"), weap_unit)
+        end
+        
+        unit:anim_state_machine():play_raw(Idstring("e_sp_aim_rifle_std"))
     else
         managers.menu_scene:_spawn_item( NPCWeap.weapons[NPCWeap.current_weapon].unit, nil)
+        NPCWeap.currentUnit = managers.menu_scene._item_unit.unit
         self.preview_style = 1
         NPCWeap:setup_weapon(managers.menu_scene._item_unit.unit, NPCWeap.current_weapon)
     end
@@ -133,7 +266,7 @@ end
 
 function NPCWeap:setup_weapon(unit, name)
     local debug_clockstart = os.clock() --DEBUG
-
+    
 	local current_weap = NPCWeap.weapons[name]
 	
 	if current_weap then
@@ -290,8 +423,9 @@ function NPCWeap:setup_weapon(unit, name)
 		end
 		
 		--Adjust Fire position
-		unit:get_object(Idstring("fire")):set_local_position(current_weap.fire_pos + barrel_len + barrel_offset + barrel_fg_len + barrel_ext_len)
-		
+        if unit:get_object(Idstring("fire")) then
+            unit:get_object(Idstring("fire")):set_local_position(current_weap.fire_pos + barrel_len + barrel_offset + barrel_fg_len + barrel_ext_len)
+		end
 		for requiredItemKey, requiredItems in pairs(current_weap.required) do
 			for _, reqItem in pairs(requiredItems) do
 				local req_object = unit:get_object(Idstring(requiredItemKey))
@@ -333,7 +467,79 @@ Hooks:Add("LocalizationManagerPostInit", "NPCWeap_Localization", function(loc)
 		["vertical_grip_title"] = "Vertical Grip",
 		["lower_receiver_title"] = "Lower Receiver",
 		["drag_handle_title"] = "Drag Handle",
-		["rail_title"] = "Rail"
+		["rail_title"] = "Rail",
+        
+        ["npcweap_prev_title"] = "Preview Type",
+        --Different preview types
+        ["npcweap_weapon"] = "Weapon",
+        ["npcweap_ene_cop_1_husk"] = "Cop 1",
+        ["npcweap_ene_cop_2_husk"] = "Cop 2",
+        ["npcweap_ene_cop_3_husk"] = "Cop 3",
+        ["npcweap_ene_cop_4_husk"] = "Cop 4",
+        ["npcweap_ene_security_1_husk"] = "Security 1",
+        ["npcweap_ene_security_2_husk"] = "Security 2",
+        ["npcweap_ene_security_3_husk"] = "Security 3",
+        ["npcweap_ene_security_4_husk"] = "Security 4",
+        ["npcweap_ene_security_5_husk"] = "Security 5",
+        ["npcweap_ene_security_6_husk"] = "Security 6",
+        ["npcweap_ene_security_7_husk"] = "Security ",
+        ["npcweap_ene_city_swat_1_husk"] = "City SWAT 1",
+        ["npcweap_ene_city_swat_2_husk"] = "City SWAT 2",
+        ["npcweap_ene_city_swat_3_husk"] = "City SWAT 3",
+        ["npcweap_ene_fbi_1_husk"] = "FBI 1",
+        ["npcweap_ene_fbi_2_husk"] = "FBI 2",
+        ["npcweap_ene_fbi_3_husk"] = "FBI 3",
+        ["npcweap_ene_fbi_boss_1_husk"] = "FBI Boss",
+        ["npcweap_ene_fbi_female_1_husk"] = "Female FBI 1",
+        ["npcweap_ene_fbi_female_2_husk"] = "Female FBI 2",
+        ["npcweap_ene_fbi_female_3_husk"] = "Female FBI 3",
+        ["npcweap_ene_fbi_female_4_husk"] = "Female FBI 4",
+        ["npcweap_ene_fbi_heavy_1_husk"] = "Heavy FBI",
+        ["npcweap_ene_fbi_office_1_husk"] = "Office FBI 1",
+        ["npcweap_ene_fbi_office_2_husk"] = "Office FBI 2",
+        ["npcweap_ene_fbi_office_3_husk"] = "Office FBI 3",
+        ["npcweap_ene_fbi_office_4_husk"] = "Office FBI 4",
+        ["npcweap_ene_fbi_swat_1_husk"] = "FBI SWAT 1",
+        ["npcweap_ene_fbi_swat_2_husk"] = "FBI SWAT 2",
+        ["npcweap_ene_murkywater_1_husk"] = "Murkywater 1",
+        ["npcweap_ene_murkywater_2_husk"] = "Murkywater 2",
+        ["npcweap_ene_prisonguard_female_1_husk"] = "Female Prison Guard",
+        ["npcweap_ene_prisonguard_male_1_husk"] = "Male Prison Guard",
+        ["npcweap_ene_secret_service_1_husk"] = "Secret Service 1",
+        ["npcweap_ene_secret_service_2_husk"] = "Secret Service 2",
+        ["npcweap_ene_shield_1_husk"] = "Shield 1",
+        ["npcweap_ene_shield_2_husk"] = "Shield 2",
+        ["npcweap_ene_sniper_1_husk"] = "Sniper 1",
+        ["npcweap_ene_sniper_2_husk"] = "Sniper 2",
+        ["npcweap_ene_spook_1_husk"] = "Cloaker",
+        ["npcweap_ene_swat_1_husk"] = "SWAT 1",
+        ["npcweap_ene_swat_2_husk"] = "SWAT 2",
+        ["npcweap_ene_swat_heavy_1_husk"] = "Heavy SWAT",
+        ["npcweap_ene_tazer_1_husk"] = "Taser",
+        ["npcweap_ene_bulldozer_1_husk"] = "Bulldozer 1",
+        ["npcweap_ene_bulldozer_2_husk"] = "Bulldozer 2",
+        ["npcweap_ene_bulldozer_3_husk"] = "Bulldozer 3",
+        ["npcweap_ene_bulldozer_4_husk"] = "Bulldozer 4",
+        ["npcweap_ene_gang_mobster_boss_husk"] = "Komissar",
+        ["npcweap_ene_gang_russian_2_husk"] = "Russian 1",
+        ["npcweap_ene_gang_russian_4_husk"] = "Russian 2",
+        ["npcweap_ene_gang_russian_5_husk"] = "Russian 3",
+        ["npcweap_ene_biker_1_husk"] = "Biker 1",
+        ["npcweap_ene_biker_2_husk"] = "Biker 2",
+        ["npcweap_ene_biker_3_husk"] = "Biker 3",
+        ["npcweap_ene_biker_4_husk"] = "Biker 4",
+        ["npcweap_ene_gang_black_1_husk"] = "Gang 1",
+        ["npcweap_ene_gang_black_2_husk"] = "Gang 2",
+        ["npcweap_ene_gang_black_3_husk"] = "Gang 3",
+        ["npcweap_ene_gang_black_4_husk"] = "Gang 4",
+        ["npcweap_ene_gang_mexican_1_husk"] = "Mexican Gang 1",
+        ["npcweap_ene_gang_mexican_2_husk"] = "Mexican Gang 2",
+        ["npcweap_ene_gang_mexican_3_husk"] = "Mexican Gang 3",
+        ["npcweap_ene_gang_mexican_4_husk"] = "Mexican Gang 4",
+        ["npcweap_ene_gang_mobster_1_husk"] = "Mobster 1",
+        ["npcweap_ene_gang_mobster_2_husk"] = "Mobster 2",
+        ["npcweap_ene_gang_mobster_3_husk"] = "Mobster 3",
+        ["npcweap_ene_gang_mobster_4_husk"] = "Mobster 4",
 	})
 end)
 
@@ -460,7 +666,12 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 	MenuCallbackHandler.refresh_weapon = function(this, item)
         local debug_clockstart = os.clock() --DEBUG
         
-		local unit = managers.menu_scene._item_unit.unit
+        local unit = managers.menu_scene._item_unit.unit
+        
+        if NPCWeap.currentUnit then
+            unit = NPCWeap.currentUnit
+        end
+        
 		local current_weap = NPCWeap.weapons[NPCWeap.current_weapon]
 		local current_value = current_weap[item:name()][item:value()]
 		NPCWeap.incompat_categories = NPCWeap.incompat_categories or {}
@@ -586,6 +797,13 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 	end
 	
 	MenuCallbackHandler.reset_buttons = function(this, item)
+        
+        --Destroy weapon unit
+        if NPCWeap.currentUnit and managers.menu_scene._item_unit.unit:get_object(Idstring("a_weapon_right_front")) then
+            World:delete_unit(NPCWeap.currentUnit)
+            NPCWeap.currentUnit = nil
+        end
+    
 		nodes.blackmarket_preview_node:clean_items()
 		managers.menu:add_back_button(nodes.blackmarket_preview_node)
 		if alive(NPCWeap._title_text) then
@@ -593,13 +811,6 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 		end
 	end
 	
-	MenuCallbackHandler.reset_buttons = function(this, item)
-		nodes.blackmarket_preview_node:clean_items()
-		managers.menu:add_back_button(nodes.blackmarket_preview_node)
-		if alive(NPCWeap._title_text) then
-			NPCWeap._title_text:set_visible(false)
-		end
-	end
 	MenuCallbackHandler.npc_weap_toggle_customization = function(this, item)
 		NPCWeap.loaded_options[NPCWeap.current_weapon].enabled = item:value() == "on" and true or false
 		local node_items = item._parameters.gui_node.row_items
@@ -616,7 +827,11 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 		NPCWeap:Save()
 	end
 	MenuCallbackHandler.refresh_weapon_action = function(this, item)
-		NPCWeap:setup_weapon(managers.menu_scene._item_unit.unit, item:name())
+        if NPCWeap.currentUnit then
+            NPCWeap:setup_weapon(NPCWeap.currentUnit, item:name())
+        else
+            NPCWeap:setup_weapon(managers.menu_scene._item_unit.unit, item:name())
+        end
 	end
 	MenuCallbackHandler.setup_buttons = function(this, item)
 		NPCWeap.current_weapon = item:name()
@@ -647,6 +862,18 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 			localize_help = false,
 			row_item_color = tweak_data.screen_colors.button_stage_3,
 		}
+        
+        NPCWeap:AddMultipleChoice({
+            id = "NPCWeapPrev",
+            title = "npcweap_prev_title",
+            help = "npcweap_prev_help",
+            callback = "NPCWeapPrevTypeChanged",
+            node = nodes.blackmarket_preview_node,
+            value = 1,
+            items = NPCWeap:GetSubtypes(NPCWeap.PrevTypes, "name"),
+            disabled = false,
+        })
+        
 		local new_item = nodes.blackmarket_preview_node:create_item({type = "CoreMenuItem.Item"}, params)
 		nodes.blackmarket_preview_node:add_item(new_item)
 		local make_fine_text = function(text)
@@ -672,6 +899,7 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
 		managers.menu:open_node("blackmarket_preview_node", {{ back_callback = callback(MenuCallbackHandler, MenuCallbackHandler, "reset_buttons") }})
 		managers.dyn_resource:load(Idstring("unit"), Idstring(NPCWeap.weapons[item:name()].unit), DynamicResourceManager.DYN_RESOURCES_PACKAGE, false)
 		managers.menu_scene:_spawn_item( NPCWeap.weapons[item:name()].unit, nil)
+        NPCWeap.currentUnit = managers.menu_scene._item_unit.unit
 		managers.menu_scene._item_yaw = -90
 		NPCWeap:setup_weapon(managers.menu_scene._item_unit.unit, item:name())
 	end
@@ -706,17 +934,6 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
         MenuCallbackHandler.NPCWeapPrevTypeChanged = function(this, item)
             NPCWeap:SetupPreview(item:value())
         end
-        
-        NPCWeap:AddMultipleChoice({
-            id = "NPCWeapPrev",
-            title = "npcweap_prev_title",
-            help = "npcweap_prev_help",
-            callback = "NPCWeapPrevTypeChanged",
-            node = nodes.blackmarket_preview_node,
-            value = 1,
-            items = NPCWeap:GetSubtypes(NPCWeap.PrevTypes, "name"),
-            disabled = false,
-        })
     end
 end)
 
