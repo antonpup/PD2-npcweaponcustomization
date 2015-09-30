@@ -1,36 +1,36 @@
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_c45_Localization", function(loc)
-	LocalizationManager:add_localized_strings({
-		["random"] = "Random",
-		["c45_none"] = "None",
-		--Barrels
-		--	None, no modifications availiable
-		--Barrel Extensions
-		["c45_g_ns_ipsccomp"] = "IPSC Complemenraty",
-		["c45_g_ns_meatgrinder"] = "Meatgrinder",
-		["c45_g_ns_flash"] = "Flash Hider",
-		["c45_g_ns_medium_slim"] = "The \"Medium Slim\"",
-		["c45_g_ns_medium_gem"] = "The GEM",
-		["c45_g_ns_large_kac"] = "Large KAC",
-		["c45_g_ns_small"] = "Small",
-		["c45_g_ns_medium"] = "Medium",
-		["c45_g_ns_large"] = "Large",
-		--Body
-		--	None, no modifications availiable
-		--Grips
-		["c45_g_grip_gripforce"] = "Force",
-		["c45_g_grip_laser"] = "Laser",
-		--Magazines
-		--	None, no modifications availiable
-		--Optics
-		["c45_g_optics_rmr"] = "RMR Scope",
-		--Slides
-		--	None, no modifications availiable
-		--Attachments
-		["c45_g_attachment_x400w"] = "X400W",
-		["c45_g_attachment_crimson"] = "Crimson",
-		["c45_g_attachment_tlr1"] = "TLR1",
-		["c45_g_attachment_pistol_laser"] = "Pistol Laser",
-	})
+    LocalizationManager:add_localized_strings({
+        ["random"] = "Random",
+        ["c45_none"] = "None",
+        --Barrels
+        --    None, no modifications availiable
+        --Barrel Extensions
+        ["c45_g_ns_ipsccomp"] = "IPSC Complemenraty",
+        ["c45_g_ns_meatgrinder"] = "Meatgrinder",
+        ["c45_g_ns_flash"] = "Flash Hider",
+        ["c45_g_ns_medium_slim"] = "The \"Medium Slim\"",
+        ["c45_g_ns_medium_gem"] = "The GEM",
+        ["c45_g_ns_large_kac"] = "Large KAC",
+        ["c45_g_ns_small"] = "Small",
+        ["c45_g_ns_medium"] = "Medium",
+        ["c45_g_ns_large"] = "Large",
+        --Body
+        --    None, no modifications availiable
+        --Grips
+        ["c45_g_grip_gripforce"] = "Force",
+        ["c45_g_grip_laser"] = "Laser",
+        --Magazines
+        --    None, no modifications availiable
+        --Optics
+        ["c45_g_optics_rmr"] = "RMR Scope",
+        --Slides
+        --    None, no modifications availiable
+        --Attachments
+        ["c45_g_attachment_x400w"] = "X400W",
+        ["c45_g_attachment_crimson"] = "Crimson",
+        ["c45_g_attachment_tlr1"] = "TLR1",
+        ["c45_g_attachment_pistol_laser"] = "Pistol Laser",
+    })
 end)
 
 NPCWeap.weapons.c45_npc = NPCWeap.weapons.c45_npc or {}
@@ -50,24 +50,24 @@ NPCWeap.weapons.c45_npc.objects_init =  {
 }
 
 NPCWeap.weapons.c45_npc.categories = {
-	"barrel_ext",
-	"sight",
-	"grip",
-	"attachment",
+    "barrel_ext",
+    "sight",
+    "grip",
+    "attachment",
 }
 
 NPCWeap.weapons.c45_npc.barrel_ext = {
-	[1] = "c45_none",
-	[2] = "c45_g_ns_small",
-	[3] = "c45_g_ns_medium",
-	[4] = "c45_g_ns_large",
-	[5] = "c45_g_ns_ipsccomp",
-	[6] = "c45_g_ns_meatgrinder",
-	[7] = "c45_g_ns_medium_slim",
-	[8] = "c45_g_ns_medium_gem",
-	[9] = "c45_g_ns_large_kac",
-	[10] = "c45_g_ns_flash",
-	[11] = "random",
+    [1] = "c45_none",
+    [2] = "c45_g_ns_small",
+    [3] = "c45_g_ns_medium",
+    [4] = "c45_g_ns_large",
+    [5] = "c45_g_ns_ipsccomp",
+    [6] = "c45_g_ns_meatgrinder",
+    [7] = "c45_g_ns_medium_slim",
+    [8] = "c45_g_ns_medium_gem",
+    [9] = "c45_g_ns_large_kac",
+    [10] = "c45_g_ns_flash",
+    [11] = "random",
 }
 NPCWeap.loaded_options.c45_npc.barrel_ext = NPCWeap.loaded_options.c45_npc.barrel_ext or 1
 NPCWeap.weapons.c45_npc.required_reset.barrel_ext = {}
@@ -91,37 +91,37 @@ NPCWeap.weapons.c45_npc.g_ns_flash = {}
 NPCWeap.weapons.c45_npc.g_ns_flash.length = Vector3(0, 4.87549, 0)
 
 NPCWeap.weapons.c45_npc.sight = {
-	[1] = "c45_none",
-	[2] = "c45_g_optics_rmr",
-	[3] = "random"
+    [1] = "c45_none",
+    [2] = "c45_g_optics_rmr",
+    [3] = "random"
 }
 NPCWeap.loaded_options.c45_npc.sight = NPCWeap.loaded_options.c45_npc.sight or 1
 NPCWeap.weapons.c45_npc.required_reset.sight = {
-	"g_optics_rmr_gfx_lens",
+    "g_optics_rmr_gfx_lens",
 }
 
 NPCWeap.weapons.c45_npc.grip = {
-	[1] = "c45_none",
-	[2] = "c45_g_grip_gripforce",
-	[3] = "c45_g_grip_laser",
-	[4] = "random",
+    [1] = "c45_none",
+    [2] = "c45_g_grip_gripforce",
+    [3] = "c45_g_grip_laser",
+    [4] = "random",
 }
 NPCWeap.loaded_options.c45_npc.grip = NPCWeap.loaded_options.c45_npc.grip or 1
 NPCWeap.weapons.c45_npc.required_reset.grip = {}
 
 NPCWeap.weapons.c45_npc.attachment = {
-	[1] = "c45_none",
-	[2] = "c45_g_attachment_pistol_laser",
-	[3] = "c45_g_attachment_tlr1",
-	[4] = "c45_g_attachment_crimson",
-	[5] = "c45_g_attachment_x400w",
-	[6] = "random",
+    [1] = "c45_none",
+    [2] = "c45_g_attachment_pistol_laser",
+    [3] = "c45_g_attachment_tlr1",
+    [4] = "c45_g_attachment_crimson",
+    [5] = "c45_g_attachment_x400w",
+    [6] = "random",
 }
 NPCWeap.loaded_options.c45_npc.attachment = NPCWeap.loaded_options.c45_npc.attachment or 1
 NPCWeap.weapons.c45_npc.required_reset.attachment = {}
 
 NPCWeap.weapons.c45_npc.required = {
-	["g_optics_rmr"] = {"g_optics_rmr_gfx_lens"},
+    ["g_optics_rmr"] = {"g_optics_rmr_gfx_lens"},
 }
 
 NPCWeap.weapons.c45_npc.incompatible = {}

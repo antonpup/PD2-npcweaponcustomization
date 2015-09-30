@@ -1,30 +1,30 @@
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_sawed_off_Localization", function(loc)
-	LocalizationManager:add_localized_strings({
-		["random"] = "Random",
-		["sawed_off_none"] = "None",
-		--Barrels
-		["sawed_off_g_barrel_long"] = "Long",
-		["sawed_off_g_barrel_short"] = "Short",
-		--Barrel Extensions
-		--	None, no modifications availiable
-		--Body
-		--	None, no modifications availiable
-		--Foregrips
-		--	None, no modifications availiable
-		--Grips
-		--	None, no modifications availiable
-		--Magazines
-		--	None, no modifications availiable
-		--Optics
-		--	None, no modifications availiable
-		--Stocks
-		["sawed_off_g_stock_long"] = "Long",
-		["sawed_off_g_stock_short"] = "Short",
-		--Attachments
-		--	None, no modifications availiable
-		
-		--Easiest weapon to make. gg
-	})
+    LocalizationManager:add_localized_strings({
+        ["random"] = "Random",
+        ["sawed_off_none"] = "None",
+        --Barrels
+        ["sawed_off_g_barrel_long"] = "Long",
+        ["sawed_off_g_barrel_short"] = "Short",
+        --Barrel Extensions
+        --    None, no modifications availiable
+        --Body
+        --    None, no modifications availiable
+        --Foregrips
+        --    None, no modifications availiable
+        --Grips
+        --    None, no modifications availiable
+        --Magazines
+        --    None, no modifications availiable
+        --Optics
+        --    None, no modifications availiable
+        --Stocks
+        ["sawed_off_g_stock_long"] = "Long",
+        ["sawed_off_g_stock_short"] = "Short",
+        --Attachments
+        --    None, no modifications availiable
+        
+        --Easiest weapon to make. gg
+    })
 end)
 
 NPCWeap.weapons.mossberg_npc = NPCWeap.weapons.mossberg_npc or {}
@@ -43,14 +43,14 @@ NPCWeap.weapons.mossberg_npc.objects_init =  {
 }
 
 NPCWeap.weapons.mossberg_npc.categories = {
-	"barrel",
-	"stock",
+    "barrel",
+    "stock",
 }
 
 NPCWeap.weapons.mossberg_npc.barrel = {
-	[1] = "sawed_off_g_barrel_long",
-	[2] = "sawed_off_g_barrel_short",
-	[3] = "random",
+    [1] = "sawed_off_g_barrel_long",
+    [2] = "sawed_off_g_barrel_short",
+    [3] = "random",
 }
 NPCWeap.loaded_options.mossberg_npc.barrel = NPCWeap.loaded_options.mossberg_npc.barrel or 1
 NPCWeap.weapons.mossberg_npc.required_reset.barrel = {}
@@ -60,9 +60,9 @@ NPCWeap.weapons.mossberg_npc.g_barrel_short = {}
 NPCWeap.weapons.mossberg_npc.g_barrel_short.barrel_ext = Vector3(0, 0, 0)
 
 NPCWeap.weapons.mossberg_npc.stock = {
-	[1] = "sawed_off_g_stock_long",
-	[2] = "sawed_off_g_stock_short",
-	[3] = "random",
+    [1] = "sawed_off_g_stock_long",
+    [2] = "sawed_off_g_stock_short",
+    [3] = "random",
 }
 NPCWeap.loaded_options.mossberg_npc.stock = NPCWeap.loaded_options.mossberg_npc.stock or 1
 NPCWeap.weapons.mossberg_npc.required_reset.stock = {}

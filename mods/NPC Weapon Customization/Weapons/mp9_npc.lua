@@ -1,58 +1,58 @@
 Hooks:Add("LocalizationManagerPostInit", "NPCWeap_mp9_Localization", function(loc)
-	LocalizationManager:add_localized_strings({
-		["random"] = "Random",
-		["mp9_none"] = "None",
-		--Barrels
-		["mp9_g_barrel_short"] = "Short",
-		["mp9_g_barrel_medium"] = "Medium",
-		["mp9_g_barrel_long"] = "Long",
-		--Barrel Extensions
-		["mp9_g_ns_firepig"] = "Firepig",
-		["mp9_g_ns_jprifles"] = "JP Rifles",
-		["mp9_g_ns_linear"] = "Linear",
-		["mp9_g_ns_medium"] = "Medium",
-		["mp9_g_ns_silencer_large"] = "Silencer",
-		["mp9_g_ns_small"] = "Small",
-		["mp9_g_ns_stubby"] = "Stubby Bastard",
-		["mp9_g_ns_surefire"] = "Sure, fire!",
-		["mp9_g_ns_tank"] = "Tank",
-		--Body
-		--	No modifications availiable.
-		--Foregrips
-		--	No modifications availiable.
-		--Grips
-		--	No modifications availiable.
-		--Vertical Grips
-		["mp9_g_vertical_grip"] = "VG",
-		["mp9_g_vg_stubby"] = "Stubby",
-		--Magazines
-		["mp9_g_mag_short"] = "Short",
-		["mp9_g_mag_extended"] = "Extended",
-		--Optics
-		["mp9_g_optics_aimpoint"] = "Aimpoint",
-		["mp9_g_optics_docter"] = "Docter",
-		["mp9_g_optics_eotech"] = "EOtech",
-		["mp9_g_optics_flipup"] = "Flipup",
-		["mp9_g_optics_specter"] = "Specter",
-		["mp9_g_optics_t1micro"] = "t1micro",
-		["mp9_g_optics_cmore"] = "cmore",
-		["mp9_g_optics_aimpoint_preorder"] = "Aimpoint preorder",
-		["mp9_g_optics_eotech_xps"] = "EOtech Gage Courier",
-		["mp9_g_optics_reflex"] = "Reflex",
-		["mp9_g_optics_rx01"] = "RX01",
-		["mp9_g_optics_rx30"] = "RX30",
-		["mp9_g_optics_cs"] = "Aimpoint CS",
-		["mp9_g_optics_acog"] = "Acog Sight",
-		["mp9_g_optics_acog"] = "Acog Sight",
-		--Stocks
-		["mp9_g_stock_skeletal"] = "Skeletor",
-		["mp9_g_stock_foldable"] = "Foldable",
-		--Attachments
-		["mp9_g_attachment_peqbox"] = "Laser Module",
-		["mp9_g_attachment_surefire"] = "Flashlight",
-		["mp9_g_attachment_laser"] = "Laser Module 2",
-		["mp9_g_attachment_peq"] = "PEQ15",
-	})
+    LocalizationManager:add_localized_strings({
+        ["random"] = "Random",
+        ["mp9_none"] = "None",
+        --Barrels
+        ["mp9_g_barrel_short"] = "Short",
+        ["mp9_g_barrel_medium"] = "Medium",
+        ["mp9_g_barrel_long"] = "Long",
+        --Barrel Extensions
+        ["mp9_g_ns_firepig"] = "Firepig",
+        ["mp9_g_ns_jprifles"] = "JP Rifles",
+        ["mp9_g_ns_linear"] = "Linear",
+        ["mp9_g_ns_medium"] = "Medium",
+        ["mp9_g_ns_silencer_large"] = "Silencer",
+        ["mp9_g_ns_small"] = "Small",
+        ["mp9_g_ns_stubby"] = "Stubby Bastard",
+        ["mp9_g_ns_surefire"] = "Sure, fire!",
+        ["mp9_g_ns_tank"] = "Tank",
+        --Body
+        --    No modifications availiable.
+        --Foregrips
+        --    No modifications availiable.
+        --Grips
+        --    No modifications availiable.
+        --Vertical Grips
+        ["mp9_g_vertical_grip"] = "VG",
+        ["mp9_g_vg_stubby"] = "Stubby",
+        --Magazines
+        ["mp9_g_mag_short"] = "Short",
+        ["mp9_g_mag_extended"] = "Extended",
+        --Optics
+        ["mp9_g_optics_aimpoint"] = "Aimpoint",
+        ["mp9_g_optics_docter"] = "Docter",
+        ["mp9_g_optics_eotech"] = "EOtech",
+        ["mp9_g_optics_flipup"] = "Flipup",
+        ["mp9_g_optics_specter"] = "Specter",
+        ["mp9_g_optics_t1micro"] = "t1micro",
+        ["mp9_g_optics_cmore"] = "cmore",
+        ["mp9_g_optics_aimpoint_preorder"] = "Aimpoint preorder",
+        ["mp9_g_optics_eotech_xps"] = "EOtech Gage Courier",
+        ["mp9_g_optics_reflex"] = "Reflex",
+        ["mp9_g_optics_rx01"] = "RX01",
+        ["mp9_g_optics_rx30"] = "RX30",
+        ["mp9_g_optics_cs"] = "Aimpoint CS",
+        ["mp9_g_optics_acog"] = "Acog Sight",
+        ["mp9_g_optics_acog"] = "Acog Sight",
+        --Stocks
+        ["mp9_g_stock_skeletal"] = "Skeletor",
+        ["mp9_g_stock_foldable"] = "Foldable",
+        --Attachments
+        ["mp9_g_attachment_peqbox"] = "Laser Module",
+        ["mp9_g_attachment_surefire"] = "Flashlight",
+        ["mp9_g_attachment_laser"] = "Laser Module 2",
+        ["mp9_g_attachment_peq"] = "PEQ15",
+    })
 end)
 
 NPCWeap.weapons.mp9_npc = NPCWeap.weapons.mp9_npc or {}
@@ -74,25 +74,25 @@ NPCWeap.weapons.mp9_npc.objects_init =  {
 }
 
 NPCWeap.weapons.mp9_npc.categories = {
-	"barrel_ext",
-	"sight",
-	"stock",
-	"attachment",
-	"vertical_grip",
+    "barrel_ext",
+    "sight",
+    "stock",
+    "attachment",
+    "vertical_grip",
 }
 
 NPCWeap.weapons.mp9_npc.barrel_ext = {
-	[1] = "mp9_none",
-	[2] = "mp9_g_ns_firepig",
-	[3] = "mp9_g_ns_jprifles",
-	[4] = "mp9_g_ns_linear",
-	[5] = "mp9_g_ns_medium",
-	[6] = "mp9_g_ns_silencer_large",
-	[7] = "mp9_g_ns_small",
-	[8] = "mp9_g_ns_stubby",
-	[9] = "mp9_g_ns_surefire",
-	[10] = "mp9_g_ns_tank",
-	[11] = "random",
+    [1] = "mp9_none",
+    [2] = "mp9_g_ns_firepig",
+    [3] = "mp9_g_ns_jprifles",
+    [4] = "mp9_g_ns_linear",
+    [5] = "mp9_g_ns_medium",
+    [6] = "mp9_g_ns_silencer_large",
+    [7] = "mp9_g_ns_small",
+    [8] = "mp9_g_ns_stubby",
+    [9] = "mp9_g_ns_surefire",
+    [10] = "mp9_g_ns_tank",
+    [11] = "random",
 }
 NPCWeap.loaded_options.mp9_npc.barrel_ext = NPCWeap.loaded_options.mp9_npc.barrel_ext or 1
 NPCWeap.weapons.mp9_npc.required_reset.barrel_ext = {}
@@ -118,81 +118,81 @@ NPCWeap.weapons.mp9_npc.g_ns_pbs1 = {}
 NPCWeap.weapons.mp9_npc.g_ns_pbs1.length = Vector3(0, 23.5928, 0)
 
 NPCWeap.weapons.mp9_npc.sight = {
-	[1] = "mp9_none",
-	[2] = "mp9_g_optics_aimpoint",
-	[3] = "mp9_g_optics_docter",
-	[4] = "mp9_g_optics_eotech",
-	[5] = "mp9_g_optics_specter",
-	[6] = "mp9_g_optics_t1micro",
-	[7] = "mp9_g_optics_cmore",
-	[8] = "mp9_g_optics_aimpoint_preorder",
-	[9] = "mp9_g_optics_eotech_xps",
-	[10] = "mp9_g_optics_reflex",
-	[11] = "mp9_g_optics_rx01",
-	[12] = "mp9_g_optics_rx30",
-	[13] = "mp9_g_optics_cs",
-	[14] = "mp9_g_optics_acog",
-	[15] = "random"
+    [1] = "mp9_none",
+    [2] = "mp9_g_optics_aimpoint",
+    [3] = "mp9_g_optics_docter",
+    [4] = "mp9_g_optics_eotech",
+    [5] = "mp9_g_optics_specter",
+    [6] = "mp9_g_optics_t1micro",
+    [7] = "mp9_g_optics_cmore",
+    [8] = "mp9_g_optics_aimpoint_preorder",
+    [9] = "mp9_g_optics_eotech_xps",
+    [10] = "mp9_g_optics_reflex",
+    [11] = "mp9_g_optics_rx01",
+    [12] = "mp9_g_optics_rx30",
+    [13] = "mp9_g_optics_cs",
+    [14] = "mp9_g_optics_acog",
+    [15] = "random"
 }
 NPCWeap.loaded_options.mp9_npc.sight = NPCWeap.loaded_options.mp9_npc.sight or 1
 NPCWeap.weapons.mp9_npc.required_reset.sight = {
-	"g_optics_eotech_gfx_lens",
-	"g_optics_acog_lens",
-	"g_optics_aimpoint_glass",
-	"g_optics_docter_lens",
-	"g_optics_specter_glass",
-	"g_optics_t1micro_glass",
-	"g_optics_cmore_lens",
-	"g_optics_aimpoint_preorder_glass",
-	"g_optics_eotech_xps_lens",
-	"g_optics_reflex_lens",
-	"g_optics_rx01_lens",
-	"g_optics_rx30_lens",
-	"g_optics_cs_lens",
+    "g_optics_eotech_gfx_lens",
+    "g_optics_acog_lens",
+    "g_optics_aimpoint_glass",
+    "g_optics_docter_lens",
+    "g_optics_specter_glass",
+    "g_optics_t1micro_glass",
+    "g_optics_cmore_lens",
+    "g_optics_aimpoint_preorder_glass",
+    "g_optics_eotech_xps_lens",
+    "g_optics_reflex_lens",
+    "g_optics_rx01_lens",
+    "g_optics_rx30_lens",
+    "g_optics_cs_lens",
 }
 
 NPCWeap.weapons.mp9_npc.stock = {
-	[1] = "mp9_g_stock_skeletal",
-	[2] = "mp9_g_stock_foldable",
-	[3] = "random",
+    [1] = "mp9_g_stock_skeletal",
+    [2] = "mp9_g_stock_foldable",
+    [3] = "random",
 }
 NPCWeap.loaded_options.mp9_npc.stock = NPCWeap.loaded_options.mp9_npc.stock or 1
 NPCWeap.weapons.mp9_npc.required_reset.stock = {}
 
 NPCWeap.weapons.mp9_npc.attachment = {
-	[1] = "mp9_none",
-	[2] = "mp9_g_attachment_peqbox",
-	[3] = "mp9_g_attachment_surefire",
-	[4] = "mp9_g_attachment_laser",
-	[5] = "mp9_g_attachment_peq",
-	[6] = "random",
+    [1] = "mp9_none",
+    [2] = "mp9_g_attachment_peqbox",
+    [3] = "mp9_g_attachment_surefire",
+    [4] = "mp9_g_attachment_laser",
+    [5] = "mp9_g_attachment_peq",
+    [6] = "random",
 }
 NPCWeap.loaded_options.mp9_npc.attachment = NPCWeap.loaded_options.mp9_npc.attachment or 1
 NPCWeap.weapons.mp9_npc.required_reset.attachment = {}
 
 NPCWeap.weapons.mp9_npc.vertical_grip = {
-	[1] = "mp9_none",
-	[2] = "mp9_g_vertical_grip",
-	[3] = "mp9_g_vg_stubby",
-	[4] = "random",
+    [1] = "mp9_none",
+    [2] = "mp9_g_vertical_grip",
+    [3] = "mp9_g_vg_stubby",
+    [4] = "random",
 }
 NPCWeap.loaded_options.mp9_npc.vertical_grip = NPCWeap.loaded_options.mp9_npc.vertical_grip or 1
 NPCWeap.weapons.mp9_npc.required_reset.vertical_grip = {}
 
 NPCWeap.weapons.mp9_npc.required = {
-	["g_optics_eotech"] = {"g_optics_eotech_gfx_lens"},
-	["g_optics_acog"] = {"g_optics_acog_lens"},
-	["g_optics_aimpoint"] = {"g_optics_aimpoint_glass"},
-	["g_optics_docter"] = {"g_optics_docter_lens"},
-	["g_optics_specter"] = {"g_optics_specter_glass"},
-	["g_optics_t1micro"] = {"g_optics_t1micro_glass"},
-	["g_optics_cmore"] = {"g_optics_cmore_lens"},
-	["g_optics_aimpoint_preorder"] = {"g_optics_aimpoint_preorder_glass"},
-	["g_optics_eotech_xps"] = {"g_optics_eotech_xps_lens"},
-	["g_optics_reflex"] = {"g_optics_reflex_lens"},
-	["g_optics_rx01"] = {"g_optics_rx01_lens"},
-	["g_optics_rx30"] = {"g_optics_rx30_lens"},
-	["g_optics_cs"] = {"g_optics_cs_lens"},
+    ["g_optics_eotech"] = {"g_optics_eotech_gfx_lens"},
+    ["g_optics_acog"] = {"g_optics_acog_lens"},
+    ["g_optics_aimpoint"] = {"g_optics_aimpoint_glass"},
+    ["g_optics_docter"] = {"g_optics_docter_lens"},
+    ["g_optics_specter"] = {"g_optics_specter_glass"},
+    ["g_optics_t1micro"] = {"g_optics_t1micro_glass"},
+    ["g_optics_cmore"] = {"g_optics_cmore_lens"},
+    ["g_optics_aimpoint_preorder"] = {"g_optics_aimpoint_preorder_glass"},
+    ["g_optics_eotech_xps"] = {"g_optics_eotech_xps_lens"},
+    ["g_optics_reflex"] = {"g_optics_reflex_lens"},
+    ["g_optics_rx01"] = {"g_optics_rx01_lens"},
+    ["g_optics_rx30"] = {"g_optics_rx30_lens"},
+    ["g_optics_cs"] = {"g_optics_cs_lens"},
 }
 
 NPCWeap.weapons.mp9_npc.absolute_reset_on_update = {}
