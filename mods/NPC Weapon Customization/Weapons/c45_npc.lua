@@ -37,6 +37,7 @@ NPCWeap.weapons.c45_npc = NPCWeap.weapons.c45_npc or {}
 NPCWeap.weapons.c45_npc.required_reset = NPCWeap.weapons.c45_npc.required_reset or {}
 NPCWeap.weapons.c45_npc.name_id = "c45_npc"
 NPCWeap.weapons.c45_npc.display_name = "Chimano"
+NPCWeap.weapons.c45_npc.anim_type = "pistol"
 NPCWeap.weapons.c45_npc.unit = "units/payday2/weapons/wpn_npc_c45/wpn_npc_c45"
 NPCWeap.weapons.c45_npc.object_sub = 5
 NPCWeap.loaded_options.c45_npc = NPCWeap.loaded_options.c45_npc or {}

@@ -79,6 +79,7 @@ NPCWeap.weapons.ak47_npc = NPCWeap.weapons.ak47_npc or {}
 NPCWeap.weapons.ak47_npc.required_reset = NPCWeap.weapons.ak47_npc.required_reset or {}
 NPCWeap.weapons.ak47_npc.name_id = "ak47_npc"
 NPCWeap.weapons.ak47_npc.display_name = "AK47"
+NPCWeap.weapons.ak47_npc.anim_type = "rifle"
 NPCWeap.weapons.ak47_npc.unit = "units/payday2/weapons/wpn_npc_ak47/wpn_npc_ak47"
 NPCWeap.weapons.ak47_npc.object_sub = 6
 NPCWeap.loaded_options.ak47_npc = NPCWeap.loaded_options.ak47_npc or {}

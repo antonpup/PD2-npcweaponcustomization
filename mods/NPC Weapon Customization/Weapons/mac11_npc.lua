@@ -53,6 +53,7 @@ NPCWeap.weapons.mac11_npc = NPCWeap.weapons.mac11_npc or {}
 NPCWeap.weapons.mac11_npc.required_reset = NPCWeap.weapons.mac11_npc.required_reset or {}
 NPCWeap.weapons.mac11_npc.name_id = "mac11_npc"
 NPCWeap.weapons.mac11_npc.display_name = "Macintosh 11"
+NPCWeap.weapons.mac11_npc.anim_type = "pistol"
 NPCWeap.weapons.mac11_npc.unit = "units/payday2/weapons/wpn_npc_mac11/wpn_npc_mac11"
 NPCWeap.weapons.mac11_npc.object_sub = 7
 NPCWeap.loaded_options.mac11_npc = NPCWeap.loaded_options.mac11_npc or {}

@@ -31,6 +31,7 @@ NPCWeap.weapons.mossberg_npc = NPCWeap.weapons.mossberg_npc or {}
 NPCWeap.weapons.mossberg_npc.required_reset = NPCWeap.weapons.mossberg_npc.required_reset or {}
 NPCWeap.weapons.mossberg_npc.name_id = "mossberg_npc"
 NPCWeap.weapons.mossberg_npc.display_name = "Sawed off Shotgun"
+NPCWeap.weapons.mossberg_npc.anim_type = "rifle"
 NPCWeap.weapons.mossberg_npc.unit = "units/payday2/weapons/wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun"
 NPCWeap.weapons.mossberg_npc.object_sub = 11
 NPCWeap.loaded_options.mossberg_npc = NPCWeap.loaded_options.mossberg_npc or {}

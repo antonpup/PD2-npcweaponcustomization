@@ -62,6 +62,7 @@ NPCWeap.weapons.scar_npc = NPCWeap.weapons.scar_npc or {}
 NPCWeap.weapons.scar_npc.required_reset = NPCWeap.weapons.scar_npc.required_reset or {}
 NPCWeap.weapons.scar_npc.name_id = "scar_npc"
 NPCWeap.weapons.scar_npc.display_name = "Murkywater Scar"
+NPCWeap.weapons.scar_npc.anim_type = "rifle"
 NPCWeap.weapons.scar_npc.unit = "units/payday2/weapons/wpn_npc_scar_murkywater/wpn_npc_scar_murkywater"
 NPCWeap.weapons.scar_npc.object_sub = 6
 NPCWeap.loaded_options.scar_npc = NPCWeap.loaded_options.scar_npc or {}

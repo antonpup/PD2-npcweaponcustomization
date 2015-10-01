@@ -12,6 +12,7 @@ if not _G.NPCWeap then
     NPCWeap.weapons = NPCWeap.weapons or {}
     NPCWeap.incompat_categories_button = {}
     NPCWeap.currentUnit = nil
+    NPCWeap.activeUnits = {}
     
 end
 
@@ -25,84 +26,84 @@ NPCWeap.hook_files = {
 
 NPCWeap.PrevTypes = {
     [1] = {name = "npcweap_weapon"},
-    [2] = {name = "npcweap_ene_bulldozer_1_husk", unit = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1_husk"},
-    
-    [3] = {name = "npcweap_ene_cop_1_husk", unit = "units/payday2/characters/ene_cop_1/ene_cop_1_husk"},
-    [4] = {name = "npcweap_ene_cop_2_husk", unit = "units/payday2/characters/ene_cop_2/ene_cop_2_husk"},
-    [5] = {name = "npcweap_ene_cop_3_husk", unit = "units/payday2/characters/ene_cop_3/ene_cop_3_husk"},
-    [6] = {name = "npcweap_ene_cop_4_husk", unit = "units/payday2/characters/ene_cop_4/ene_cop_4_husk"},
-    [7] = {name = "npcweap_ene_security_1_husk", unit = "units/payday2/characters/ene_security_1/ene_security_1_husk", require_package = "packages/narr_firestarter3"},
-    [8] = {name = "npcweap_ene_security_2_husk", unit = "units/payday2/characters/ene_security_2/ene_security_2_husk", require_package = "packages/narr_firestarter3"},
-    [9] = {name = "npcweap_ene_security_3_husk", unit = "units/payday2/characters/ene_security_3/ene_security_3_husk", require_package = "packages/narr_firestarter3"},
-    [10] = {name = "npcweap_ene_security_4_husk", unit = "units/payday2/characters/ene_security_4/ene_security_4_husk", require_package = "packages/narr_big"},
-    [11] = {name = "npcweap_ene_security_5_husk", unit = "units/payday2/characters/ene_security_5/ene_security_5_husk", require_package = "packages/narr_big"},
-    [12] = {name = "npcweap_ene_security_6_husk", unit = "units/payday2/characters/ene_security_6/ene_security_6_husk", require_package = "packages/narr_big"},
-    [13] = {name = "npcweap_ene_security_7_husk", unit = "units/payday2/characters/ene_security_7/ene_security_7_husk", require_package = "packages/narr_big"},
-    [14] = {name = "npcweap_ene_city_swat_1_husk", unit = "units/payday2/characters/ene_city_swat_1/ene_city_swat_1_husk"},
-    [15] = {name = "npcweap_ene_city_swat_2_husk", unit = "units/payday2/characters/ene_city_swat_2/ene_city_swat_2_husk"},
-    [16] = {name = "npcweap_ene_city_swat_3_husk", unit = "units/payday2/characters/ene_city_swat_3/ene_city_swat_3_husk"},
-    [17] = {name = "npcweap_ene_fbi_1_husk", unit = "units/payday2/characters/ene_fbi_1/ene_fbi_1_husk"},
-    [18] = {name = "npcweap_ene_fbi_2_husk", unit = "units/payday2/characters/ene_fbi_2/ene_fbi_2_husk"},
-    [19] = {name = "npcweap_ene_fbi_3_husk", unit = "units/payday2/characters/ene_fbi_3/ene_fbi_3_husk"},
-    [20] = {name = "npcweap_ene_fbi_boss_1_husk", unit = "units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1_husk", require_package = "packages/narr_hox_2"},
-    [21] = {name = "npcweap_ene_fbi_female_1_husk", unit = "units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1_husk", require_package = "packages/narr_hox_2"},
-    [22] = {name = "npcweap_ene_fbi_female_2_husk", unit = "units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2_husk", require_package = "packages/narr_hox_2"},
-    [23] = {name = "npcweap_ene_fbi_female_3_husk", unit = "units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3_husk", require_package = "packages/narr_hox_2"},
-    [24] = {name = "npcweap_ene_fbi_female_4_husk", unit = "units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4_husk", require_package = "packages/narr_hox_2"},
-    [25] = {name = "npcweap_ene_fbi_heavy_1_husk", unit = "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1_husk"},
-    [26] = {name = "npcweap_ene_fbi_office_1_husk", unit = "units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1_husk", require_package = "packages/narr_hox_2"},
-    [27] = {name = "npcweap_ene_fbi_office_2_husk", unit = "units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2_husk", require_package = "packages/narr_hox_2"},
-    [28] = {name = "npcweap_ene_fbi_office_3_husk", unit = "units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3_husk", require_package = "packages/narr_hox_2"},
-    [29] = {name = "npcweap_ene_fbi_office_4_husk", unit = "units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4_husk", require_package = "packages/narr_hox_2"},
-    [30] = {name = "npcweap_ene_fbi_swat_1_husk", unit = "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1_husk"},
-    [31] = {name = "npcweap_ene_fbi_swat_2_husk", unit = "units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2_husk"},
-    [32] = {name = "npcweap_ene_murkywater_1_husk", unit = "units/payday2/characters/ene_murkywater_1/ene_murkywater_1_husk", require_package = "packages/kosugi"},
-    [33] = {name = "npcweap_ene_murkywater_2_husk", unit = "units/payday2/characters/ene_murkywater_2/ene_murkywater_2_husk", require_package = "packages/kosugi"},
-    [34] = {name = "npcweap_ene_prisonguard_female_1_husk", unit = "units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1_husk", require_package = "packages/narr_hox_1"},
-    [35] = {name = "npcweap_ene_prisonguard_male_1_husk", unit = "units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1_husk", require_package = "packages/narr_hox_1"},
-    [36] = {name = "npcweap_ene_secret_service_1_husk", unit = "units/payday2/characters/ene_secret_service_1/ene_secret_service_1_husk", require_package = "packages/kosugi"},
-    [37] = {name = "npcweap_ene_secret_service_2_husk", unit = "units/payday2/characters/ene_secret_service_2/ene_secret_service_2_husk", require_package = "packages/kosugi"},
-    [38] = {name = "npcweap_ene_shield_1_husk", unit = "units/payday2/characters/ene_shield_1/ene_shield_1_husk"},
-    [39] = {name = "npcweap_ene_shield_2_husk", unit = "units/payday2/characters/ene_shield_2/ene_shield_2_husk"},
-    [40] = {name = "npcweap_ene_sniper_1_husk", unit = "units/payday2/characters/ene_sniper_1/ene_sniper_1_husk"},
-    [41] = {name = "npcweap_ene_sniper_2_husk", unit = "units/payday2/characters/ene_sniper_2/ene_sniper_2_husk"},
-    [42] = {name = "npcweap_ene_spook_1_husk", unit = "units/payday2/characters/ene_spook_1/ene_spook_1_husk"},
-    [43] = {name = "npcweap_ene_swat_1_husk", unit = "units/payday2/characters/ene_swat_1/ene_swat_1_husk"},
-    [44] = {name = "npcweap_ene_swat_2_husk", unit = "units/payday2/characters/ene_swat_2/ene_swat_2_husk"},
-    [45] = {name = "npcweap_ene_swat_heavy_1_husk", unit = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1_husk"},
-    [46] = {name = "npcweap_ene_tazer_1_husk", unit = "units/payday2/characters/ene_tazer_1/ene_tazer_1_husk"},
-    [47] = {name = "npcweap_ene_bulldozer_2_husk", unit = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2_husk"},
-    [48] = {name = "npcweap_ene_bulldozer_3_husk", unit = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3_husk"},
-    --[49] = {name = "npcweap_ene_bulldozer_4_husk", unit = "units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4_husk"},
-    [50] = {name = "npcweap_ene_gang_mobster_boss_husk", unit = "units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss_husk", require_package = "packages/narr_mia_2"},
-    [51] = {name = "npcweap_ene_gang_russian_2_husk", unit = "units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2_husk", require_package = "packages/vlad_nightclub"},
-    [52] = {name = "npcweap_ene_gang_russian_4_husk", unit = "units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4_husk", require_package = "packages/vlad_nightclub"},
-    [53] = {name = "npcweap_ene_gang_russian_5_husk", unit = "units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5_husk", require_package = "packages/vlad_nightclub"},
-    [54] = {name = "npcweap_ene_biker_1_husk", unit = "units/payday2/characters/ene_biker_1/ene_biker_1_husk", require_package = "packages/narr_jungle1"},
-    [55] = {name = "npcweap_ene_biker_2_husk", unit = "units/payday2/characters/ene_biker_2/ene_biker_2_husk", require_package = "packages/narr_jungle1"},
-    [56] = {name = "npcweap_ene_biker_3_husk", unit = "units/payday2/characters/ene_biker_3/ene_biker_3_husk", require_package = "packages/narr_jungle1"},
-    [57] = {name = "npcweap_ene_biker_4_husk", unit = "units/payday2/characters/ene_biker_4/ene_biker_4_husk", require_package = "packages/narr_jungle1"},
-    [58] = {name = "npcweap_ene_gang_black_1_husk", unit = "units/payday2/characters/ene_gang_black_1/ene_gang_black_1_husk", require_package = "packages/narr_jungle1"},
-    [59] = {name = "npcweap_ene_gang_black_2_husk", unit = "units/payday2/characters/ene_gang_black_2/ene_gang_black_2_husk", require_package = "packages/narr_jungle1"},
-    [60] = {name = "npcweap_ene_gang_black_3_husk", unit = "units/payday2/characters/ene_gang_black_3/ene_gang_black_3_husk", require_package = "packages/narr_jungle1"},
-    [61] = {name = "npcweap_ene_gang_black_4_husk", unit = "units/payday2/characters/ene_gang_black_4/ene_gang_black_4_husk", require_package = "packages/narr_jungle1"},
-    [62] = {name = "npcweap_ene_gang_mexican_1_husk", unit = "units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1_husk", require_package = "packages/narr_firestarter1"},
-    [63] = {name = "npcweap_ene_gang_mexican_2_husk", unit = "units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2_husk", require_package = "packages/narr_firestarter1"},
-    [64] = {name = "npcweap_ene_gang_mexican_3_husk", unit = "units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3_husk", require_package = "packages/narr_firestarter1"},
-    [65] = {name = "npcweap_ene_gang_mexican_4_husk", unit = "units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4_husk", require_package = "packages/narr_firestarter1"},
-    [66] = {name = "npcweap_ene_gang_mobster_1_husk", unit = "units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1_husk", require_package = "packages/narr_mia_2"},
-    [67] = {name = "npcweap_ene_gang_mobster_2_husk", unit = "units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2_husk", require_package = "packages/narr_mia_2"},
-    [68] = {name = "npcweap_ene_gang_mobster_3_husk", unit = "units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3_husk", require_package = "packages/narr_mia_2"},
-    [69] = {name = "npcweap_ene_gang_mobster_4_husk", unit = "units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4_husk", require_package = "packages/narr_mia_2"}
+    [2] = {name = "npcweap_ene_cop_1_husk", unit = "units/payday2/characters/ene_cop_1/ene_cop_1_husk", anim_globals = {"cbt", "cop"} },
+    [3] = {name = "npcweap_ene_cop_2_husk", unit = "units/payday2/characters/ene_cop_2/ene_cop_2_husk", anim_globals = {"cbt", "cop"} },
+    [4] = {name = "npcweap_ene_cop_3_husk", unit = "units/payday2/characters/ene_cop_3/ene_cop_3_husk", anim_globals = {"cbt", "cop"} },
+    [5] = {name = "npcweap_ene_cop_4_husk", unit = "units/payday2/characters/ene_cop_4/ene_cop_4_husk", anim_globals = {"cbt", "cop"} },
+    [6] = {name = "npcweap_ene_security_1_husk", unit = "units/payday2/characters/ene_security_1/ene_security_1_husk", require_package = "packages/narr_firestarter3", anim_globals = {"cbt", "cop"} },
+    [7] = {name = "npcweap_ene_security_2_husk", unit = "units/payday2/characters/ene_security_2/ene_security_2_husk", require_package = "packages/narr_firestarter3", anim_globals = {"cbt", "cop"} },
+    [8] = {name = "npcweap_ene_security_3_husk", unit = "units/payday2/characters/ene_security_3/ene_security_3_husk", require_package = "packages/narr_firestarter3", anim_globals = {"cbt", "cop"} },
+    [9] = {name = "npcweap_ene_security_4_husk", unit = "units/payday2/characters/ene_security_4/ene_security_4_husk", require_package = "packages/narr_big", anim_globals = {"cbt", "cop"} },
+    [10] = {name = "npcweap_ene_security_5_husk", unit = "units/payday2/characters/ene_security_5/ene_security_5_husk", require_package = "packages/narr_big", anim_globals = {"cbt", "cop"} },
+    [11] = {name = "npcweap_ene_security_6_husk", unit = "units/payday2/characters/ene_security_6/ene_security_6_husk", require_package = "packages/narr_big", anim_globals = {"cbt", "cop"} },
+    [12] = {name = "npcweap_ene_security_7_husk", unit = "units/payday2/characters/ene_security_7/ene_security_7_husk", require_package = "packages/narr_big", anim_globals = {"cbt", "cop"} },
+    [13] = {name = "npcweap_ene_city_swat_1_husk", unit = "units/payday2/characters/ene_city_swat_1/ene_city_swat_1_husk", anim_globals = {"cbt", "cop"} },
+    [14] = {name = "npcweap_ene_city_swat_2_husk", unit = "units/payday2/characters/ene_city_swat_2/ene_city_swat_2_husk", anim_globals = {"cbt", "cop"} },
+    [15] = {name = "npcweap_ene_city_swat_3_husk", unit = "units/payday2/characters/ene_city_swat_3/ene_city_swat_3_husk", anim_globals = {"cbt", "cop"} },
+    [16] = {name = "npcweap_ene_fbi_1_husk", unit = "units/payday2/characters/ene_fbi_1/ene_fbi_1_husk", anim_globals = {"cbt", "cop"} },
+    [17] = {name = "npcweap_ene_fbi_2_husk", unit = "units/payday2/characters/ene_fbi_2/ene_fbi_2_husk", anim_globals = {"cbt", "cop"} },
+    [18] = {name = "npcweap_ene_fbi_3_husk", unit = "units/payday2/characters/ene_fbi_3/ene_fbi_3_husk", anim_globals = {"cbt", "cop"} },
+    [19] = {name = "npcweap_ene_fbi_boss_1_husk", unit = "units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1_husk", require_package = "packages/narr_hox_2", anim_globals = {"cbt", "cop"} },
+    [20] = {name = "npcweap_ene_fbi_female_1_husk", unit = "units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1_husk", require_package = "packages/narr_hox_2", anim_globals = {"cbt", "cop", "female"} },
+    [21] = {name = "npcweap_ene_fbi_female_2_husk", unit = "units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2_husk", require_package = "packages/narr_hox_2", anim_globals = {"cbt", "cop", "female"} },
+    [22] = {name = "npcweap_ene_fbi_female_3_husk", unit = "units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3_husk", require_package = "packages/narr_hox_2", anim_globals = {"cbt", "cop", "female"} },
+    [23] = {name = "npcweap_ene_fbi_female_4_husk", unit = "units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4_husk", require_package = "packages/narr_hox_2", anim_globals = {"cbt", "cop", "female"} },
+    [24] = {name = "npcweap_ene_fbi_heavy_1_husk", unit = "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1_husk", anim_globals = {"cbt", "cop"} },
+    [25] = {name = "npcweap_ene_fbi_office_1_husk", unit = "units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1_husk", require_package = "packages/narr_hox_2", anim_globals = {"cbt", "cop"} },
+    [26] = {name = "npcweap_ene_fbi_office_2_husk", unit = "units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2_husk", require_package = "packages/narr_hox_2", anim_globals = {"cbt", "cop"} },
+    [27] = {name = "npcweap_ene_fbi_office_3_husk", unit = "units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3_husk", require_package = "packages/narr_hox_2", anim_globals = {"cbt", "cop"} },
+    [28] = {name = "npcweap_ene_fbi_office_4_husk", unit = "units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4_husk", require_package = "packages/narr_hox_2", anim_globals = {"cbt", "cop"} },
+    [29] = {name = "npcweap_ene_fbi_swat_1_husk", unit = "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1_husk", anim_globals = {"cbt", "cop"} },
+    [30] = {name = "npcweap_ene_fbi_swat_2_husk", unit = "units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2_husk", anim_globals = {"cbt", "cop"} },
+    [31] = {name = "npcweap_ene_murkywater_1_husk", unit = "units/payday2/characters/ene_murkywater_1/ene_murkywater_1_husk", require_package = "packages/kosugi", anim_globals = {"cbt", "cop"} },
+    [32] = {name = "npcweap_ene_murkywater_2_husk", unit = "units/payday2/characters/ene_murkywater_2/ene_murkywater_2_husk", require_package = "packages/kosugi", anim_globals = {"cbt", "cop"} },
+    [33] = {name = "npcweap_ene_prisonguard_female_1_husk", unit = "units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1_husk", require_package = "packages/narr_hox_1", anim_globals = {"cbt", "cop"} },
+    [34] = {name = "npcweap_ene_prisonguard_male_1_husk", unit = "units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1_husk", require_package = "packages/narr_hox_1", anim_globals = {"cbt", "cop"} },
+    [35] = {name = "npcweap_ene_secret_service_1_husk", unit = "units/payday2/characters/ene_secret_service_1/ene_secret_service_1_husk", require_package = "packages/kosugi", anim_globals = {"cbt", "cop"} },
+    [36] = {name = "npcweap_ene_secret_service_2_husk", unit = "units/payday2/characters/ene_secret_service_2/ene_secret_service_2_husk", require_package = "packages/kosugi", anim_globals = {"cbt", "cop"} },
+    [37] = {name = "npcweap_ene_shield_1_husk", unit = "units/payday2/characters/ene_shield_1/ene_shield_1_husk", anim_globals = {"cbt", "shield"}, additional_units = { {unit = "units/payday2/characters/ene_acc_shield_lights/ene_acc_shield_lights", parent_object = "a_weapon_left_front"} } },
+    [38] = {name = "npcweap_ene_shield_2_husk", unit = "units/payday2/characters/ene_shield_2/ene_shield_2_husk", anim_globals = {"cbt", "shield"}, additional_units = { {unit = "units/payday2/characters/ene_acc_shield_small/shield_small", parent_object = "a_weapon_left_front"} } },
+    [39] = {name = "npcweap_ene_sniper_1_husk", unit = "units/payday2/characters/ene_sniper_1/ene_sniper_1_husk", anim_globals = {"cbt", "cop"} },
+    [40] = {name = "npcweap_ene_sniper_2_husk", unit = "units/payday2/characters/ene_sniper_2/ene_sniper_2_husk", anim_globals = {"cbt", "cop"} },
+    [41] = {name = "npcweap_ene_spook_1_husk", unit = "units/payday2/characters/ene_spook_1/ene_spook_1_husk", anim_globals = {"cbt", "cop"} },
+    [42] = {name = "npcweap_ene_swat_1_husk", unit = "units/payday2/characters/ene_swat_1/ene_swat_1_husk", anim_globals = {"cbt", "cop"} },
+    [43] = {name = "npcweap_ene_swat_2_husk", unit = "units/payday2/characters/ene_swat_2/ene_swat_2_husk", anim_globals = {"cbt", "cop"} },
+    [44] = {name = "npcweap_ene_swat_heavy_1_husk", unit = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1_husk", anim_globals = {"cbt", "cop"} },
+    [45] = {name = "npcweap_ene_tazer_1_husk", unit = "units/payday2/characters/ene_tazer_1/ene_tazer_1_husk", anim_globals = {"cbt", "cop"} },
+    [46] = {name = "npcweap_ene_bulldozer_1_husk", unit = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1_husk", anim_globals = {"cbt", "tank"} },
+    [47] = {name = "npcweap_ene_bulldozer_2_husk", unit = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2_husk", anim_globals = {"cbt", "tank"} },
+    [48] = {name = "npcweap_ene_bulldozer_3_husk", unit = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3_husk", anim_globals = {"cbt", "tank"} },
+    --[49] = {name = "npcweap_ene_bulldozer_4_husk", unit = "units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4_husk", anim_globals = {"cbt", "tank"} },
+    [49] = {name = "npcweap_ene_gang_mobster_boss_husk", unit = "units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
+    [50] = {name = "npcweap_ene_gang_russian_2_husk", unit = "units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt", "cop"} },
+    [51] = {name = "npcweap_ene_gang_russian_4_husk", unit = "units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt", "cop"} },
+    [52] = {name = "npcweap_ene_gang_russian_5_husk", unit = "units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt", "cop"} },
+    [53] = {name = "npcweap_ene_biker_1_husk", unit = "units/payday2/characters/ene_biker_1/ene_biker_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    [54] = {name = "npcweap_ene_biker_2_husk", unit = "units/payday2/characters/ene_biker_2/ene_biker_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    [55] = {name = "npcweap_ene_biker_3_husk", unit = "units/payday2/characters/ene_biker_3/ene_biker_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    [56] = {name = "npcweap_ene_biker_4_husk", unit = "units/payday2/characters/ene_biker_4/ene_biker_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    [57] = {name = "npcweap_ene_gang_black_1_husk", unit = "units/payday2/characters/ene_gang_black_1/ene_gang_black_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    [58] = {name = "npcweap_ene_gang_black_2_husk", unit = "units/payday2/characters/ene_gang_black_2/ene_gang_black_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    [59] = {name = "npcweap_ene_gang_black_3_husk", unit = "units/payday2/characters/ene_gang_black_3/ene_gang_black_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    [60] = {name = "npcweap_ene_gang_black_4_husk", unit = "units/payday2/characters/ene_gang_black_4/ene_gang_black_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    [61] = {name = "npcweap_ene_gang_mexican_1_husk", unit = "units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
+    [62] = {name = "npcweap_ene_gang_mexican_2_husk", unit = "units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
+    [63] = {name = "npcweap_ene_gang_mexican_3_husk", unit = "units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
+    [64] = {name = "npcweap_ene_gang_mexican_4_husk", unit = "units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
+    [65] = {name = "npcweap_ene_gang_mobster_1_husk", unit = "units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
+    [66] = {name = "npcweap_ene_gang_mobster_2_husk", unit = "units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
+    [67] = {name = "npcweap_ene_gang_mobster_3_husk", unit = "units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
+    [68] = {name = "npcweap_ene_gang_mobster_4_husk", unit = "units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} }
 
 
 }
 
 -- Will probably need more data for these anims, hence the table structure
 NPCWeap.Anims = {
-    [1] = {name = "e_sp_aim_rifle_std"},
-    [2] = {name = "sprint_fwd"},
-    [3] = {name = "spooc_strike"},
+    [1] = {name = "npcweap_reload", animation = "reload" },
+    [2] = {name = "npcweap_intimidated", animation = "hands_up"},
+    [3] = {name = "npcweap_sprint_fwd", animation = "sprint_fwd"},
+    [4] = {name = "npcweap_spooc_strike", animation = "spooc_strike"},
 }
 
 function NPCWeap:GetSubtypes(data, var)
@@ -169,6 +170,14 @@ function NPCWeap:SetupPreview(id)
         NPCWeap.currentUnit = nil
     end
     
+    if NPCWeap.activeUnits then
+        for _, active_unit in pairs(NPCWeap.activeUnits) do
+            World:delete_unit(active_unit)
+        end
+        
+        NPCWeap.activeUnits = {}
+    end
+    
     self._loaded_packages = self._loaded_packages ~= nil and self._loaded_packages or {}
     
     local prevdata = self.PrevTypes[id]
@@ -211,7 +220,33 @@ function NPCWeap:SetupPreview(id)
             unit:link(Idstring("a_weapon_right_front"), weap_unit)
         end
         
-        unit:anim_state_machine():play_raw(Idstring(NPCWeap.Anims[NPCWeap.CurrentAnim or 1].name))
+        if prevdata.additional_units then
+            
+            for _, add_unit in pairs(prevdata.additional_units) do
+            
+                if unit:get_object(Idstring(add_unit.parent_object)) then
+                    local spawn_rot = unit:get_object(Idstring(add_unit.parent_object)):rotation()
+                    local spawn_pos = unit:get_object(Idstring(add_unit.parent_object)):position()
+                    
+                    local added_unit = World:spawn_unit(Idstring(add_unit.unit), spawn_pos, spawn_rot)
+                    
+                    table.insert(NPCWeap.activeUnits, added_unit)
+                    
+                    unit:link(Idstring(add_unit.parent_object), added_unit)
+                end
+            end
+            
+        end
+        
+        local asm = unit:anim_state_machine()
+        
+        for _, global_state in pairs(prevdata.anim_globals) do
+            asm:set_global(global_state, 1)
+        end
+        
+        asm:set_global(NPCWeap.weapons[NPCWeap.current_weapon].anim_type, 1)
+        
+       asm:play_redirect(Idstring(NPCWeap.Anims[NPCWeap.CurrentAnim or 1].animation))
         
         --NPCWeap.AnimBtn:set_enabled(true)
     else
@@ -236,9 +271,11 @@ function NPCWeap:SetupPreview(id)
 end
 
 function NPCWeap:UnloadAll()
-    for i, pck in pairs(self._loaded_packages) do
-        if PackageManager:loaded(pck) then
-            PackageManager:unload(pck)
+    if self._loaded_packages then
+        for i, pck in pairs(self._loaded_packages) do
+            if PackageManager:loaded(pck) then
+                PackageManager:unload(pck)
+            end
         end
     end
     
@@ -555,6 +592,13 @@ Hooks:Add("LocalizationManagerPostInit", "NPCWeap_Localization", function(loc)
         ["npcweap_ene_gang_mobster_2_husk"] = "Mobster 2",
         ["npcweap_ene_gang_mobster_3_husk"] = "Mobster 3",
         ["npcweap_ene_gang_mobster_4_husk"] = "Mobster 4",
+        
+        --Animations
+        ["npcweap_anim_title"] ="Animations",
+        ["npcweap_reload"] ="Reload",
+        ["npcweap_intimidated"] ="Intimidated",
+        ["npcweap_sprint_fwd"] ="Sprint",
+        ["npcweap_spooc_strike"] ="WOLOLOLOLOL",
     })
 end)
 
@@ -832,6 +876,14 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
             World:delete_unit(NPCWeap.currentUnit)
             NPCWeap.currentUnit = nil
         end
+        if NPCWeap.activeUnits then
+            for _, active_unit in pairs(NPCWeap.activeUnits) do
+                World:delete_unit(active_unit)
+            end
+            
+            NPCWeap.activeUnits = {}
+        end
+        
         managers.menu_scene:remove_item()
         nodes.blackmarket_preview_node:clean_items()
         managers.menu:add_back_button(nodes.blackmarket_preview_node)
@@ -869,19 +921,21 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
             NPCWeap:SetupPreview(item:value())
         else
             NPCWeap._panel = NPCWeap._panel or managers.gui_data:create_saferect_workspace():panel()
-            NPCWeap._loading_circle = NPCWeap._panel:bitmap({
-                name = "_loading_circle",
-                texture = "guis/textures/icon_loading",
-                layer = 0,
-                visible = false
-            })
+            if not NPCWeap._loading_circle then
+                NPCWeap._loading_circle = NPCWeap._panel:bitmap({
+                    name = "_loading_circle",
+                    texture = "guis/textures/icon_loading",
+                    layer = 0,
+                    visible = false
+                })
+            end
             NPCWeap._loading_circle:set_center(NPCWeap._panel:center())
         end
     end
     
     MenuCallbackHandler.NPCWeapAnimChanged = function(this, item)
         if NPCWeap.preview_style == 2 then
-            managers.menu_scene._item_unit.unit:anim_state_machine():play_raw(Idstring(NPCWeap.Anims[item:value()].name))
+            managers.menu_scene._item_unit.unit:anim_state_machine():play_redirect(Idstring(NPCWeap.Anims[item:value()].animation))
         end
         NPCWeap.CurrentAnim = item:value()
     end

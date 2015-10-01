@@ -59,6 +59,7 @@ NPCWeap.weapons.saiga_npc = NPCWeap.weapons.saiga_npc or {}
 NPCWeap.weapons.saiga_npc.required_reset = NPCWeap.weapons.saiga_npc.required_reset or {}
 NPCWeap.weapons.saiga_npc.name_id = "saiga_npc"
 NPCWeap.weapons.saiga_npc.display_name = "Saiga"
+NPCWeap.weapons.saiga_npc.anim_type = "rifle"
 NPCWeap.weapons.saiga_npc.unit = "units/payday2/weapons/wpn_npc_saiga/wpn_npc_saiga"
 NPCWeap.weapons.saiga_npc.object_sub = 7
 NPCWeap.weapons.saiga_npc.spooci = {}

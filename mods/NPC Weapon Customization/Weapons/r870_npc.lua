@@ -64,6 +64,7 @@ NPCWeap.weapons.r870_npc = NPCWeap.weapons.r870_npc or {}
 NPCWeap.weapons.r870_npc.required_reset = NPCWeap.weapons.r870_npc.required_reset or {}
 NPCWeap.weapons.r870_npc.name_id = "r870_npc"
 NPCWeap.weapons.r870_npc.display_name = "Remington 870"
+NPCWeap.weapons.r870_npc.anim_type = "rifle"
 NPCWeap.weapons.r870_npc.unit = "units/payday2/weapons/wpn_npc_r870/wpn_npc_r870"
 NPCWeap.weapons.r870_npc.object_sub = 6
 NPCWeap.weapons.r870_npc.spooci = {}

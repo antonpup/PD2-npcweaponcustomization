@@ -36,6 +36,7 @@ NPCWeap.weapons.raging_bull_npc = NPCWeap.weapons.raging_bull_npc or {}
 NPCWeap.weapons.raging_bull_npc.required_reset = NPCWeap.weapons.raging_bull_npc.required_reset or {}
 NPCWeap.weapons.raging_bull_npc.name_id = "raging_bull_npc"
 NPCWeap.weapons.raging_bull_npc.display_name = "Bronco"
+NPCWeap.weapons.raging_bull_npc.anim_type = "pistol"
 NPCWeap.weapons.raging_bull_npc.unit = "units/payday2/weapons/wpn_npc_raging_bull/wpn_npc_raging_bull"
 NPCWeap.weapons.raging_bull_npc.object_sub = 13
 NPCWeap.loaded_options.raging_bull_npc = NPCWeap.loaded_options.raging_bull_npc or {}

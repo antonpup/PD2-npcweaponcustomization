@@ -59,6 +59,7 @@ NPCWeap.weapons.mp5_npc = NPCWeap.weapons.mp5_npc or {}
 NPCWeap.weapons.mp5_npc.required_reset = NPCWeap.weapons.mp5_npc.required_reset or {}
 NPCWeap.weapons.mp5_npc.name_id = "mp5_npc"
 NPCWeap.weapons.mp5_npc.display_name = "MP5 Player"
+NPCWeap.weapons.mp5_npc.anim_type = "pistol"
 NPCWeap.weapons.mp5_npc.unit = "units/payday2/weapons/wpn_npc_mp5/wpn_npc_mp5"
 NPCWeap.weapons.mp5_npc.object_sub = 5
 NPCWeap.weapons.mp5_npc.spooci = {}

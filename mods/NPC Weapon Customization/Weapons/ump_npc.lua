@@ -53,6 +53,7 @@ NPCWeap.weapons.ump_npc = NPCWeap.weapons.ump_npc or {}
 NPCWeap.weapons.ump_npc.required_reset = NPCWeap.weapons.ump_npc.required_reset or {}
 NPCWeap.weapons.ump_npc.name_id = "ump_npc"
 NPCWeap.weapons.ump_npc.display_name = "UMP 45"
+NPCWeap.weapons.ump_npc.anim_type = "rifle"
 NPCWeap.weapons.ump_npc.unit = "units/payday2/weapons/wpn_npc_ump/wpn_npc_ump"
 NPCWeap.weapons.ump_npc.object_sub = 5
 NPCWeap.loaded_options.ump_npc = NPCWeap.loaded_options.ump_npc or {}

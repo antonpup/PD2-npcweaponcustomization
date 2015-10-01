@@ -47,6 +47,7 @@ NPCWeap.weapons.m14_sniper_npc = NPCWeap.weapons.m14_sniper_npc or {}
 NPCWeap.weapons.m14_sniper_npc.required_reset = NPCWeap.weapons.m14_sniper_npc.required_reset or {}
 NPCWeap.weapons.m14_sniper_npc.name_id = "m14_sniper_npc"
 NPCWeap.weapons.m14_sniper_npc.display_name = "Thanatos"
+NPCWeap.weapons.m14_sniper_npc.anim_type = "rifle"
 NPCWeap.weapons.m14_sniper_npc.unit = "units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper"
 NPCWeap.weapons.m14_sniper_npc.object_sub = 8
 NPCWeap.weapons.m14_sniper_npc.spooci = {}

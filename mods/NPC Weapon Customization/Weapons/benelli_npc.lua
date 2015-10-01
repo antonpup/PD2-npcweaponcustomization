@@ -45,6 +45,7 @@ NPCWeap.weapons.benelli_npc = NPCWeap.weapons.benelli_npc or {}
 NPCWeap.weapons.benelli_npc.required_reset = NPCWeap.weapons.benelli_npc.required_reset or {}
 NPCWeap.weapons.benelli_npc.name_id = "benelli_npc"
 NPCWeap.weapons.benelli_npc.display_name = "XM1014"
+NPCWeap.weapons.benelli_npc.anim_type = "rifle"
 NPCWeap.weapons.benelli_npc.unit = "units/payday2/weapons/wpn_npc_benelli/wpn_npc_benelli"
 NPCWeap.weapons.benelli_npc.object_sub = 9
 NPCWeap.loaded_options.benelli_npc = NPCWeap.loaded_options.benelli_npc or {}

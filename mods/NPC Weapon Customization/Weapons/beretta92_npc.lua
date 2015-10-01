@@ -45,6 +45,7 @@ NPCWeap.weapons.beretta92_npc = NPCWeap.weapons.beretta92_npc or {}
 NPCWeap.weapons.beretta92_npc.required_reset = NPCWeap.weapons.beretta92_npc.required_reset or {}
 NPCWeap.weapons.beretta92_npc.name_id = "beretta92_npc"
 NPCWeap.weapons.beretta92_npc.display_name = "Beretta 92"
+NPCWeap.weapons.beretta92_npc.anim_type = "pistol"
 NPCWeap.weapons.beretta92_npc.unit = "units/payday2/weapons/wpn_npc_beretta92/wpn_npc_beretta92"
 NPCWeap.weapons.beretta92_npc.object_sub = 11
 NPCWeap.loaded_options.beretta92_npc = NPCWeap.loaded_options.beretta92_npc or {}

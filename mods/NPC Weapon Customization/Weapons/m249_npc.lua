@@ -47,6 +47,7 @@ NPCWeap.weapons.m249_npc = NPCWeap.weapons.m249_npc or {}
 NPCWeap.weapons.m249_npc.required_reset = NPCWeap.weapons.m249_npc.required_reset or {}
 NPCWeap.weapons.m249_npc.name_id = "m249_npc"
 NPCWeap.weapons.m249_npc.display_name = "Mice249"
+NPCWeap.weapons.m249_npc.anim_type = "rifle"
 NPCWeap.weapons.m249_npc.unit = "units/payday2/weapons/wpn_npc_lmg_m249/wpn_npc_lmg_m249"
 NPCWeap.weapons.m249_npc.object_sub = 6
 NPCWeap.loaded_options.m249_npc = NPCWeap.loaded_options.m249_npc or {}

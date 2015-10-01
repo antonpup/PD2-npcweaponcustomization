@@ -61,6 +61,7 @@ NPCWeap.weapons.g36_npc = NPCWeap.weapons.g36_npc or {}
 NPCWeap.weapons.g36_npc.required_reset = NPCWeap.weapons.g36_npc.required_reset or {}
 NPCWeap.weapons.g36_npc.name_id = "g36_npc"
 NPCWeap.weapons.g36_npc.display_name = "JP36"
+NPCWeap.weapons.g36_npc.anim_type = "rifle"
 NPCWeap.weapons.g36_npc.unit = "units/payday2/weapons/wpn_npc_g36/wpn_npc_g36"
 NPCWeap.weapons.g36_npc.object_sub = 5
 NPCWeap.loaded_options.g36_npc = NPCWeap.loaded_options.g36_npc or {}
