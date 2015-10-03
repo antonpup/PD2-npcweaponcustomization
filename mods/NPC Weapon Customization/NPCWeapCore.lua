@@ -13,6 +13,9 @@ if not _G.NPCWeap then
     NPCWeap.incompat_categories_button = {}
     NPCWeap.currentUnit = nil
     NPCWeap.activeUnits = {}
+    NPCWeap.CurrentAnim = 1
+    NPCWeap.CurrentPreview = 1
+    
     
 end
 
@@ -74,36 +77,40 @@ NPCWeap.PrevTypes = {
     {name = "npcweap_ene_bulldozer_2_husk", unit = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2_husk", anim_globals = {"cbt", "tank"} },
     {name = "npcweap_ene_bulldozer_3_husk", unit = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3_husk", anim_globals = {"cbt", "tank"} },
     --{name = "npcweap_ene_bulldozer_4_husk", unit = "units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4_husk", anim_globals = {"cbt", "tank"} },
-    {name = "npcweap_ene_gang_mobster_boss_husk", unit = "units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_russian_2_husk", unit = "units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_russian_4_husk", unit = "units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_russian_5_husk", unit = "units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_biker_1_husk", unit = "units/payday2/characters/ene_biker_1/ene_biker_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_biker_2_husk", unit = "units/payday2/characters/ene_biker_2/ene_biker_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_biker_3_husk", unit = "units/payday2/characters/ene_biker_3/ene_biker_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_biker_4_husk", unit = "units/payday2/characters/ene_biker_4/ene_biker_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_black_1_husk", unit = "units/payday2/characters/ene_gang_black_1/ene_gang_black_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_black_2_husk", unit = "units/payday2/characters/ene_gang_black_2/ene_gang_black_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_black_3_husk", unit = "units/payday2/characters/ene_gang_black_3/ene_gang_black_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_black_4_husk", unit = "units/payday2/characters/ene_gang_black_4/ene_gang_black_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_mexican_1_husk", unit = "units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_mexican_2_husk", unit = "units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_mexican_3_husk", unit = "units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_mexican_4_husk", unit = "units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_mobster_1_husk", unit = "units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_mobster_2_husk", unit = "units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_mobster_3_husk", unit = "units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
-    {name = "npcweap_ene_gang_mobster_4_husk", unit = "units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} }
+    {name = "npcweap_ene_gang_mobster_boss_husk", unit = "units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "tank"} },
+    {name = "npcweap_ene_gang_russian_2_husk", unit = "units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_russian_4_husk", unit = "units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_russian_5_husk", unit = "units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_biker_1_husk", unit = "units/payday2/characters/ene_biker_1/ene_biker_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_biker_2_husk", unit = "units/payday2/characters/ene_biker_2/ene_biker_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_biker_3_husk", unit = "units/payday2/characters/ene_biker_3/ene_biker_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_biker_4_husk", unit = "units/payday2/characters/ene_biker_4/ene_biker_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_black_1_husk", unit = "units/payday2/characters/ene_gang_black_1/ene_gang_black_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_black_2_husk", unit = "units/payday2/characters/ene_gang_black_2/ene_gang_black_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_black_3_husk", unit = "units/payday2/characters/ene_gang_black_3/ene_gang_black_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_black_4_husk", unit = "units/payday2/characters/ene_gang_black_4/ene_gang_black_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_mexican_1_husk", unit = "units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_mexican_2_husk", unit = "units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_mexican_3_husk", unit = "units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_mexican_4_husk", unit = "units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_mobster_1_husk", unit = "units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_mobster_2_husk", unit = "units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_mobster_3_husk", unit = "units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt"} },
+    {name = "npcweap_ene_gang_mobster_4_husk", unit = "units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt"} }
 
 
 }
 
 -- Will probably need more data for these anims, hence the table structure
 NPCWeap.Anims = {
-    {name = "npcweap_reload", animation = "reload" },
-    {name = "npcweap_intimidated", animation = "hands_up"},
-    {name = "npcweap_sprint_fwd", animation = "sprint_fwd"},
-    {name = "npcweap_spooc_strike", animation = "spooc_strike"},
+    {name = "equip", animations = { "stand", "equip" } } ,
+    {name = "hurt", animations = { "stand", "hurt" } } ,
+    {name = "crouch", animations = { "crouch" } } ,
+    {name = "recoil_auto", animations = { "stand", "recoil_auto" } } ,
+    {name = "npcweap_reload", animations = { "stand", "reload" } },
+    {name = "npcweap_intimidated", animations = { "stand", "hands_up" } },
+    {name = "npcweap_sprint_fwd", animations = { "stand", "sprint_fwd" } },
+    {name = "npcweap_spooc_strike", animations = { "stand", "spooc_strike" } },
 }
 
 function NPCWeap:GetSubtypes(data, var)
@@ -165,11 +172,10 @@ end
 function NPCWeap:SetupPreview(id)
     
     --Destroy weapon unit
-    if NPCWeap.currentUnit and managers.menu_scene._item_unit.unit:get_object(Idstring("a_weapon_right_front")) then
+    if NPCWeap.currentUnit and managers.menu_scene._item_unit and managers.menu_scene._item_unit.unit:get_object(Idstring("a_weapon_right_front")) then
         World:delete_unit(NPCWeap.currentUnit)
         NPCWeap.currentUnit = nil
     end
-    
     if NPCWeap.activeUnits then
         for _, active_unit in pairs(NPCWeap.activeUnits) do
             World:delete_unit(active_unit)
@@ -195,17 +201,13 @@ function NPCWeap:SetupPreview(id)
         end
     end
     
-    if #self._loaded_packages > 0 then
-        while(not PackageManager:loaded(self._loaded_packages[#self._loaded_packages])) do
-        
-        end
-    end
-    
     if prevdata.unit then
         log(prevdata.unit)
         managers.menu_scene:_spawn_item( prevdata.unit, nil)
         self.preview_style = 2
         managers.menu_scene._item_yaw = 180
+        managers.menu_scene._item_rot_pos = managers.menu_scene._item_rot_pos + Vector3(0, 0, -20) --Lower the enemy to see weapon/upper body
+        
         local unit = managers.menu_scene._item_unit.unit
         
         if unit:get_object(Idstring("a_weapon_right_front")) then
@@ -244,9 +246,24 @@ function NPCWeap:SetupPreview(id)
             asm:set_global(global_state, 1)
         end
         
+        asm:set_global("ntl", 0)
+        asm:set_global("hos", 1)
         asm:set_global(NPCWeap.weapons[NPCWeap.current_weapon].anim_type, 1)
         
-        asm:play_redirect(Idstring(NPCWeap.Anims[NPCWeap.CurrentAnim or 1].animation))
+        asm:play_redirect(Idstring("idle"))
+        for _, anim in pairs(NPCWeap.Anims[NPCWeap.CurrentAnim or 1].animations) do
+            asm:play_redirect(Idstring(anim))
+        end
+        --[[Note: By using modifiers, we can make our unit aim at a specific vector. Sample code:
+            asm:force_modifier(Idstring("aim_r_arm") ) 
+            asm:force_modifier(Idstring("look_head") ) 
+            local aim_modifier = asm:get_modifier(Idstring("aim_r_arm") ) 
+            local look_modifier = asm:get_modifier(Idstring("look_head") ) 
+            aim_modifier:set_target_y(target_vec) 
+            look_modifier:set_target_y(target_vec) 
+            
+            This will make our unit aim at target_vec Vector, and it will make it look towards it as well.
+        ]]
         
         --NPCWeap.AnimBtn:set_enabled(true)
     else
@@ -870,9 +887,8 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
     end
     
     MenuCallbackHandler.reset_buttons = function(this, item)
-        NPCWeap:UnloadAll()
         --Destroy weapon unit
-        if NPCWeap.currentUnit and managers.menu_scene._item_unit.unit and managers.menu_scene._item_unit.unit:get_object(Idstring("a_weapon_right_front")) then
+        if NPCWeap.currentUnit and managers.menu_scene._item_unit and managers.menu_scene._item_unit.unit:get_object(Idstring("a_weapon_right_front")) then
             World:delete_unit(NPCWeap.currentUnit)
             NPCWeap.currentUnit = nil
         end
@@ -890,6 +906,8 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
         if alive(NPCWeap._title_text) then
             NPCWeap._title_text:set_visible(false)
         end
+        
+        NPCWeap:UnloadAll()
     end
     
     MenuCallbackHandler.npc_weap_toggle_customization = function(this, item)
@@ -935,7 +953,10 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
     
     MenuCallbackHandler.NPCWeapAnimChanged = function(this, item)
         if NPCWeap.preview_style == 2 then
-            managers.menu_scene._item_unit.unit:anim_state_machine():play_redirect(Idstring(NPCWeap.Anims[item:value()].animation))
+            managers.menu_scene._item_unit.unit:anim_state_machine():play_redirect(Idstring("idle"))
+            for _, anim in pairs(NPCWeap.Anims[item:value()].animations) do
+                managers.menu_scene._item_unit.unit:anim_state_machine():play_redirect(Idstring(anim))
+            end
         end
         NPCWeap.CurrentAnim = item:value()
     end
@@ -969,14 +990,26 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
             localize_help = false,
             row_item_color = tweak_data.screen_colors.button_stage_3,
         }
+        local new_item = nodes.blackmarket_preview_node:create_item({type = "CoreMenuItem.Item"}, params)
+        nodes.blackmarket_preview_node:add_item(new_item)
         
+        local divider_preview_params = {
+            name = "divider_preview_" .. item:name(),
+            no_text = true,
+            size = 8,
+        }
+        local new_menu_divider_preview = nodes.blackmarket_preview_node:create_item({type = "MenuItemDivider"}, divider_preview_params)
+        nodes.blackmarket_preview_node:add_item(new_menu_divider_preview)
+        
+        --Animations and Preview stuff
+        --NPCWeap.AnimBtn = nodes.blackmarket_preview_node:item("NPCWeapAnim")
         NPCWeap:AddMultipleChoice({
             id = "NPCWeapPrev",
             title = "npcweap_prev_title",
             help = "npcweap_prev_help",
             callback = "NPCWeapPrevTypeChanged",
             node = nodes.blackmarket_preview_node,
-            value = 1,
+            value = NPCWeap.CurrentPreview or 1,
             items = NPCWeap:GetSubtypes(NPCWeap.PrevTypes, "name"),
             enabled = true,
         })
@@ -987,13 +1020,11 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
             help = "npcweap_anim_help",
             callback = "NPCWeapAnimChanged",
             node = nodes.blackmarket_preview_node,
-            value = 1,
+            value = NPCWeap.CurrentAnim or 1,
             items = NPCWeap:GetSubtypes(NPCWeap.Anims, "name"),
             enabled = true, -- This should be false, so it isn't enabled with the weapon preview style, but I wasn't able to quickly make it reanable easily
         })
-        --NPCWeap.AnimBtn = nodes.blackmarket_preview_node:item("NPCWeapAnim")
-        local new_item = nodes.blackmarket_preview_node:create_item({type = "CoreMenuItem.Item"}, params)
-        nodes.blackmarket_preview_node:add_item(new_item)
+        
         local make_fine_text = function(text)
             local x, y, w, h = text:text_rect()
             text:set_size(w, h)
@@ -1015,11 +1046,9 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
             NPCWeap._title_text:set_text(string.upper(NPCWeap.weapons[item:name()].display_name))
         end
         managers.menu:open_node("blackmarket_preview_node", {{ back_callback = callback(MenuCallbackHandler, MenuCallbackHandler, "reset_buttons") }})
+        
         managers.dyn_resource:load(Idstring("unit"), Idstring(NPCWeap.weapons[item:name()].unit), DynamicResourceManager.DYN_RESOURCES_PACKAGE, false)
-        managers.menu_scene:_spawn_item( NPCWeap.weapons[item:name()].unit, nil)
-        NPCWeap.currentUnit = managers.menu_scene._item_unit.unit
-        managers.menu_scene._item_yaw = -90
-        NPCWeap:setup_weapon(managers.menu_scene._item_unit.unit, item:name())
+        NPCWeap:SetupPreview(NPCWeap.CurrentPreview)
     end
     for p, d in pairs(NPCWeap.weapons) do
         MenuHelper:AddButton({

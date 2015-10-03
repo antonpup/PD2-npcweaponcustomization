@@ -92,6 +92,7 @@ NPCWeap.weapons.m4_npc = NPCWeap.weapons.m4_npc or {}
 NPCWeap.weapons.m4_npc.required_reset = NPCWeap.weapons.m4_npc.required_reset or {}
 NPCWeap.weapons.m4_npc.name_id = "m4_npc"
 NPCWeap.weapons.m4_npc.display_name = "M4"
+NPCWeap.weapons.m4_npc.anim_type = "rifle"
 NPCWeap.weapons.m4_npc.unit = "units/payday2/weapons/wpn_npc_m4/wpn_npc_m4"
 NPCWeap.weapons.m4_npc.object_sub = 4
 NPCWeap.weapons.m4_npc.spooci = {}
