@@ -15,7 +15,7 @@ if not _G.NPCWeap then
     NPCWeap.activeUnits = {}
     NPCWeap.CurrentAnim = 1
     NPCWeap.CurrentPreview = 1
-    
+    NPCWeap.EnemySightUpdate = false
     
 end
 
@@ -78,25 +78,25 @@ NPCWeap.PrevTypes = {
     {name = "npcweap_ene_bulldozer_3_husk", unit = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3_husk", anim_globals = {"cbt", "tank"} },
     --{name = "npcweap_ene_bulldozer_4_husk", unit = "units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4_husk", anim_globals = {"cbt", "tank"} },
     {name = "npcweap_ene_gang_mobster_boss_husk", unit = "units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "tank"} },
-    {name = "npcweap_ene_gang_russian_2_husk", unit = "units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_russian_4_husk", unit = "units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_russian_5_husk", unit = "units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_biker_1_husk", unit = "units/payday2/characters/ene_biker_1/ene_biker_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_biker_2_husk", unit = "units/payday2/characters/ene_biker_2/ene_biker_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_biker_3_husk", unit = "units/payday2/characters/ene_biker_3/ene_biker_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_biker_4_husk", unit = "units/payday2/characters/ene_biker_4/ene_biker_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_black_1_husk", unit = "units/payday2/characters/ene_gang_black_1/ene_gang_black_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_black_2_husk", unit = "units/payday2/characters/ene_gang_black_2/ene_gang_black_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_black_3_husk", unit = "units/payday2/characters/ene_gang_black_3/ene_gang_black_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_black_4_husk", unit = "units/payday2/characters/ene_gang_black_4/ene_gang_black_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_mexican_1_husk", unit = "units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_mexican_2_husk", unit = "units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_mexican_3_husk", unit = "units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_mexican_4_husk", unit = "units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_mobster_1_husk", unit = "units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_mobster_2_husk", unit = "units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_mobster_3_husk", unit = "units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt"} },
-    {name = "npcweap_ene_gang_mobster_4_husk", unit = "units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt"} }
+    {name = "npcweap_ene_gang_russian_2_husk", unit = "units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_russian_4_husk", unit = "units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_russian_5_husk", unit = "units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5_husk", require_package = "packages/vlad_nightclub", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_biker_1_husk", unit = "units/payday2/characters/ene_biker_1/ene_biker_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_biker_2_husk", unit = "units/payday2/characters/ene_biker_2/ene_biker_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_biker_3_husk", unit = "units/payday2/characters/ene_biker_3/ene_biker_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_biker_4_husk", unit = "units/payday2/characters/ene_biker_4/ene_biker_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_black_1_husk", unit = "units/payday2/characters/ene_gang_black_1/ene_gang_black_1_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_black_2_husk", unit = "units/payday2/characters/ene_gang_black_2/ene_gang_black_2_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_black_3_husk", unit = "units/payday2/characters/ene_gang_black_3/ene_gang_black_3_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_black_4_husk", unit = "units/payday2/characters/ene_gang_black_4/ene_gang_black_4_husk", require_package = "packages/narr_jungle1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_mexican_1_husk", unit = "units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_mexican_2_husk", unit = "units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_mexican_3_husk", unit = "units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_mexican_4_husk", unit = "units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4_husk", require_package = "packages/narr_firestarter1", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_mobster_1_husk", unit = "units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_mobster_2_husk", unit = "units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_mobster_3_husk", unit = "units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} },
+    {name = "npcweap_ene_gang_mobster_4_husk", unit = "units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4_husk", require_package = "packages/narr_mia_2", anim_globals = {"cbt", "cop"} }
 
 
 }
@@ -106,7 +106,7 @@ NPCWeap.Anims = {
     {name = "equip", animations = { "stand", "equip" } } ,
     {name = "hurt", animations = { "stand", "hurt" } } ,
     {name = "crouch", animations = { "crouch" } } ,
-    {name = "recoil_auto", animations = { "stand", "recoil_auto" } } ,
+    {name = "aim", animations = { "stand" }, aim_mod = true } ,
     {name = "npcweap_reload", animations = { "stand", "reload" } },
     {name = "npcweap_intimidated", animations = { "stand", "hands_up" } },
     {name = "npcweap_sprint_fwd", animations = { "stand", "sprint_fwd" } },
@@ -254,7 +254,11 @@ function NPCWeap:SetupPreview(id)
         for _, anim in pairs(NPCWeap.Anims[NPCWeap.CurrentAnim or 1].animations) do
             asm:play_redirect(Idstring(anim))
         end
+            
+        NPCWeap.EnemySightUpdate = true
+        NPCWeap:updateUnitTarget( NPCWeap.Anims[NPCWeap.CurrentAnim or 1].aim_mod or false  )
         --[[Note: By using modifiers, we can make our unit aim at a specific vector. Sample code:
+            --"action_upper_body"
             asm:force_modifier(Idstring("aim_r_arm") ) 
             asm:force_modifier(Idstring("look_head") ) 
             local aim_modifier = asm:get_modifier(Idstring("aim_r_arm") ) 
@@ -267,6 +271,7 @@ function NPCWeap:SetupPreview(id)
         
         --NPCWeap.AnimBtn:set_enabled(true)
     else
+        NPCWeap.EnemySightUpdate = false
         managers.menu_scene:_spawn_item( NPCWeap.weapons[NPCWeap.current_weapon].unit, nil)
         NPCWeap.currentUnit = managers.menu_scene._item_unit.unit
         self.preview_style = 1
@@ -285,6 +290,33 @@ function NPCWeap:SetupPreview(id)
     self._loaded_packages = packages or {}
     
     -- Need to manipulate anims button
+end
+
+function NPCWeap:updateUnitTarget(state)
+    local unit = managers.menu_scene._item_unit.unit
+    if unit and NPCWeap.EnemySightUpdate then
+        local asm = unit:anim_state_machine()
+        
+        if state then
+            asm:force_modifier(Idstring("action_upper_body") ) 
+            asm:force_modifier(Idstring("aim_r_arm") ) 
+            unit:set_animatable_enabled(Idstring("ik_aim") , true)
+        else
+            asm:forbid_modifier(Idstring("action_upper_body") ) 
+            asm:forbid_modifier(Idstring("aim_r_arm") ) 
+            unit:set_animatable_enabled(Idstring("ik_aim") , false)
+        end
+        
+        local ubody_modifier = asm:get_modifier(Idstring("action_upper_body") ) 
+        local aim_modifier = asm:get_modifier(Idstring("aim_r_arm") ) 
+        --local look_modifier = asm:get_modifier(Idstring("look_head") ) 
+        local target_vec = unit:get_object(Idstring("aim")):position() - Vector3(0, 0, -20)
+        ubody_modifier:set_target_z(target_vec) 
+        aim_modifier:set_target_z(target_vec) 
+        --look_modifier:set_target_z(target_vec)
+        ubody_modifier:blend()
+        aim_modifier:blend()
+    end
 end
 
 function NPCWeap:UnloadAll()
@@ -750,6 +782,8 @@ function NPCWeap:update(t, dt)
             NPCWeap:SetupPreview(NPCWeap.CurrentPreview)
         end
     end
+    
+    NPCWeap:updateUnitTarget( NPCWeap.Anims[NPCWeap.CurrentAnim or 1].aim_mod or false )
 end
 
 Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function( menu_manager, nodes )
