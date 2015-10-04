@@ -16,6 +16,7 @@ if not _G.NPCWeap then
     NPCWeap.CurrentAnim = 1
     NPCWeap.CurrentPreview = 1
     NPCWeap.EnemySightUpdate = false
+    NPCWeap.isInPreview = false
     
 end
 
@@ -779,11 +780,15 @@ function NPCWeap:update(t, dt)
             NPCWeap._loading_circle:set_visible(false)
             NPCWeap._panel:remove(NPCWeap._loading_circle)
             NPCWeap._loading_circle = nil
-            NPCWeap:SetupPreview(NPCWeap.CurrentPreview)
+            if NPCWeap.isInPreview then
+                NPCWeap:SetupPreview(NPCWeap.CurrentPreview)
+            end
         end
     end
     
-    NPCWeap:updateUnitTarget( NPCWeap.Anims[NPCWeap.CurrentAnim or 1].aim_mod or false )
+    if managers.menu_scene and managers.menu_scene._item_unit then
+        NPCWeap:updateUnitTarget( NPCWeap.Anims[NPCWeap.CurrentAnim or 1].aim_mod or false )
+    end
 end
 
 Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function( menu_manager, nodes )
@@ -941,6 +946,7 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
             NPCWeap._title_text:set_visible(false)
         end
         
+        NPCWeap.isInPreview = false
         NPCWeap:UnloadAll()
     end
     
@@ -1080,6 +1086,8 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
             NPCWeap._title_text:set_text(string.upper(NPCWeap.weapons[item:name()].display_name))
         end
         managers.menu:open_node("blackmarket_preview_node", {{ back_callback = callback(MenuCallbackHandler, MenuCallbackHandler, "reset_buttons") }})
+        
+        NPCWeap.isInPreview = true
         
         managers.dyn_resource:load(Idstring("unit"), Idstring(NPCWeap.weapons[item:name()].unit), DynamicResourceManager.DYN_RESOURCES_PACKAGE, false)
         NPCWeap:SetupPreview(NPCWeap.CurrentPreview)
