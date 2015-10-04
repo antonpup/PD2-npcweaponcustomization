@@ -559,7 +559,7 @@ Hooks:Add("LocalizationManagerPostInit", "NPCWeap_Localization", function(loc)
         ["body_title"] = "Body",
         ["barrel_ext_title"] = "Barrel Extension",
         ["magazine_title"] = "Magazine",
-        ["upper_reciever_title"] = "Upper Reciever",
+        ["upper_reciever_title"] = "Upper Receiver",
         ["stock_title"] = "Stock",
         ["sight_title"] = "Scopes",
         ["slide_title"] = "Slide",
