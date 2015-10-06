@@ -17,7 +17,7 @@ if not _G.NPCWeap then
     NPCWeap.CurrentPreview = 1
     NPCWeap.EnemySightUpdate = false
     NPCWeap.isInPreview = false
-    
+    NPCWeap.MenuHidden = false
 end
 
 NPCWeap.dofiles = {
@@ -783,11 +783,30 @@ function NPCWeap:update(t, dt)
             if NPCWeap.isInPreview then
                 NPCWeap:SetupPreview(NPCWeap.CurrentPreview)
             end
+            NPCWeap:SetupPreview(NPCWeap.CurrentPreview)
         end
     end
     
     if managers.menu_scene and managers.menu_scene._item_unit then
         NPCWeap:updateUnitTarget( NPCWeap.Anims[NPCWeap.CurrentAnim or 1].aim_mod or false )
+    end
+end
+
+function NPCWeap:key_press(o, k)
+    if k == Idstring("space") then
+        if not self.MenuHidden then
+            managers.menu._registered_menus["menu_main"].renderer:hide()
+            managers.menu._registered_menus["menu_main"].renderer:accept_input(false)
+            NPCWeap._title_text:set_visible(false)
+            NPCWeap._hide_text:set_visible(false)
+            self.MenuHidden = not self.MenuHidden
+        else
+            managers.menu._registered_menus["menu_main"].renderer:show()
+            managers.menu._registered_menus["menu_main"].renderer._logic:accept_input(true)
+            NPCWeap._title_text:set_visible(true)
+            NPCWeap._hide_text:set_visible(true)
+            self.MenuHidden = not self.MenuHidden
+        end
     end
 end
 
@@ -946,7 +965,15 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
             NPCWeap._title_text:set_visible(false)
         end
         
+        if alive(NPCWeap._hide_text) then
+            NPCWeap._hide_text:set_visible(false)
+        end
+        
         NPCWeap.isInPreview = false
+        
+        NPCWeap._ws:disconnect_keyboard()
+		NPCWeap._panel:key_press(nil)
+        
         NPCWeap:UnloadAll()
     end
     
@@ -1070,8 +1097,12 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
             text:set_size(w, h)
             text:set_position(math.round(text:x()), math.round(text:y()))
         end
-        if not NPCWeap._panel and not NPCWeap._title_text then
-            NPCWeap._panel = managers.gui_data:create_saferect_workspace():panel()
+        if not NPCWeap._panel then
+            NPCWeap._ws = managers.gui_data:create_saferect_workspace()
+            NPCWeap._panel = NPCWeap._ws:panel()
+        end
+        
+        if not NPCWeap._title_text then
             NPCWeap._title_text = NPCWeap._panel:text({
                 name = "title_text",
                 text = "weapon",
@@ -1081,16 +1112,39 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "Base_PopulateNPCWeapMenu", function
                 color = tweak_data.screen_colors.button_stage_3
             })
         end
+        if not NPCWeap._hide_text then
+            NPCWeap._hide_text = NPCWeap._panel:text({
+                name = "hide_text",
+                text = "Press [SPACE] to toggle menu visibility",
+                visible = false,
+                font_size = 16,
+                font = tweak_data.menu.pd2_large_font,
+                color = Color.white,
+                align = "right",
+                vertical = "top",
+                valign = "top",
+            })
+            NPCWeap._hide_text:set_righttop(NPCWeap._panel:righttop())
+        end
+        
         if alive(NPCWeap._title_text) then
             NPCWeap._title_text:set_visible(true)
             NPCWeap._title_text:set_text(string.upper(NPCWeap.weapons[item:name()].display_name))
         end
+        
+        if alive(NPCWeap._hide_text) then
+            NPCWeap._hide_text:set_visible(true)
+        end
+        
         managers.menu:open_node("blackmarket_preview_node", {{ back_callback = callback(MenuCallbackHandler, MenuCallbackHandler, "reset_buttons") }})
         
         NPCWeap.isInPreview = true
         
         managers.dyn_resource:load(Idstring("unit"), Idstring(NPCWeap.weapons[item:name()].unit), DynamicResourceManager.DYN_RESOURCES_PACKAGE, false)
         NPCWeap:SetupPreview(NPCWeap.CurrentPreview)
+        
+        NPCWeap._ws:connect_keyboard(Input:keyboard())
+        NPCWeap._panel:key_press(callback(NPCWeap, NPCWeap, "key_press"))
     end
     for p, d in pairs(NPCWeap.weapons) do
         MenuHelper:AddButton({
@@ -1247,5 +1301,4 @@ Hooks:Add("MenuManagerBuildCustomMenus", "Base_BuildNPCWeapMenu", function( menu
     end
     nodes[NPCWeap.OptionMenuName] = MenuHelper:BuildMenu( NPCWeap.OptionMenuName )
     MenuHelper:AddMenuItem( MenuHelper.menus.lua_mod_options_menu, NPCWeap.OptionMenuName, "NPCWeapOptions_button", "NPCWeapOptions_button_help", 1 )
-    nodes[NPCWeap.OptionMenuName]._parameters.scene_state = "standard"
 end)
