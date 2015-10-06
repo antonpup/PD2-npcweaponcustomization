@@ -7,5 +7,5 @@
     - [IN PROGRESS] At the end of weapon part sections, add Preview (list of weapon, taser, ... other enemies), add Animation (list of animations)
     - [DONE] Preview will spawn either the weapon to preview or it will spawn a unit with the currently opened weapon. Enemies spawned are _husk so they do not spawn on other client's screens.
     - [IN PROGRESS] Animation will apply a specific animation to either the weapon or the spawned unit
-    - User can press "space" to hide all ui to take screenshots. User can press "esc" or "space" to restore the ui.
+    - [PRETTY MUCH DONE] User can press "space" to hide all ui to take screenshots. User can press "esc" or "space" to restore the ui.
     - Add "Don't sync weapon" boolean, when enabled this weapon will not be synchronized with host. Disabled it will obey the Global Synch option.
